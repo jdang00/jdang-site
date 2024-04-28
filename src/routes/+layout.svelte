@@ -2,6 +2,7 @@
 	import '../app.css';
 	import Nav from '$lib/Nav.svelte';
 	import self from '../img/justin.webp';
+	import CourseTable from './classes/data-table.svelte';
 </script>
 
 <Nav />
@@ -34,4 +35,5 @@
 	</li>
 </ul>
 
+<div class="mx-24 mt-10"><CourseTable /></div>
 <slot />
