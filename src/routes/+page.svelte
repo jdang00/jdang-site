@@ -1,9 +1,11 @@
 <script>
 	import '../app.css';
-	import Nav from '$lib/Nav.svelte';
-	import self from '../img/justin.webp';
-	import CourseTable from './classes/data-table.svelte';
-	import { Button } from '$lib/components/ui/button';
+	import Nav from '$lib/Nav.svelte'
+	import grad from '../img/grad.webp'
+	import cce from '../img/cce.webp'
+	import optom from '../img/optom.webp'
+	import CourseTable from './classes/data-table.svelte'
+	import { Button } from '$lib/components/ui/button'
 </script>
 
 <Nav />
@@ -25,7 +27,7 @@
 				<div class="overflow-hidden">
 					<img
 						class="hover:scale-110 transition-all duration-500 cursor-pointer"
-						src={self}
+						src={cce}
 						alt="logos"
 					/>
 				</div>
@@ -44,7 +46,7 @@
 				<div class="overflow-hidden">
 					<img
 						class="hover:scale-110 transition-all duration-500 cursor-pointer"
-						src={self}
+						src={grad}
 						alt="cs"
 					/>
 				</div>
@@ -62,7 +64,7 @@
 				<div class="overflow-hidden">
 					<img
 						class="hover:scale-110 transition-all duration-500 cursor-pointer"
-						src={self}
+						src={optom}
 						alt="op"
 					/>
 				</div>
