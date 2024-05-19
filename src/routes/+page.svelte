@@ -18,6 +18,7 @@
 			<p class="mt-2 text-gray-600">
 				Computer Science and Mathematics | University of Arkansas – Fort Smith
 			</p>
+			<h2 class="text-3xl">I love my sister Faith.</h2>
 		</div>
 	</div>
 
