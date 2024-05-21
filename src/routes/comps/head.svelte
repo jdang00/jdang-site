@@ -1,4 +1,5 @@
 <script>
+	import About from './about.svelte';
 	const profile = 'https://utfs.io/f/50ee5591-301f-4c0f-b9cc-66b188de8d5e-1w6ku.png';
 	const instagramIcon = 'https://utfs.io/f/eafd333b-264a-4e66-bb72-a2154efbce15-nyy399.svg';
 	const githubIcon = 'https://utfs.io/f/8f2a449a-1e47-4828-9f7e-6765cefcc135-rz0awz.svg';
@@ -26,5 +27,6 @@
 			</div>
 		</div>
 		<div class="border-b w-full my-8"></div>
+		<About />
 	</div>
 </div>
