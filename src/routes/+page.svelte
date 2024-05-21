@@ -1,82 +1,36 @@
 <script>
 	import '../app.css';
-	import Nav from '$lib/Nav.svelte'
-	import grad from '../img/grad.webp'
-	import cce from '../img/cce.webp'
-	import optom from '../img/optom.webp'
-	import CourseTable from './classes/data-table.svelte'
-	import { Button } from '$lib/components/ui/button'
+	import Nav from '$lib/Nav.svelte';
+	const profile = 'https://utfs.io/f/50ee5591-301f-4c0f-b9cc-66b188de8d5e-1w6ku.png';
+	const instagramIcon = 'https://utfs.io/f/eafd333b-264a-4e66-bb72-a2154efbce15-nyy399.svg';
+	const githubIcon = 'https://utfs.io/f/8f2a449a-1e47-4828-9f7e-6765cefcc135-rz0awz.svg';
+	const linkedinIcon = 'https://utfs.io/f/7d482c1c-109e-47c7-84da-3e65551be882-t5c96b.svg';
 </script>
 
 <Nav />
 
-<div class="flex flex-col mx-auto my-24 gap-14 flex-wrap">
-	<div class="flex flex-row flex-wrap justify-center gap-x-10 text-center">
-		<div class="flex flex-col mb-10">
-			<h1 class="text-5xl font-bold">Justin A. Dang</h1>
-			<p class="mt-4 text-gray-600">Oklahoma School of Optometry | Northeastern State University</p>
-			<p class="mt-2 text-gray-600">
-				Computer Science and Mathematics | University of Arkansas – Fort Smith
-			</p>
-		</div>
-	</div>
-
-	<div class="text-left">
-		<div class="flex flex-row justify-evenly mx-10 flex-wrap gap-5">
-			<div class="max-w-sm rounded overflow-hidden shadow-lg">
-				<div class="overflow-hidden">
-					<img
-						class="hover:scale-110 transition-all duration-500 cursor-pointer"
-						src={cce}
-						alt="logos"
-					/>
-				</div>
-
-				<div class="px-6 py-4">
-					<div class="font-bold text-xl mb-2">Classically Educated.</div>
-					<p class="text-gray-700 text-base">
-						I fell in love with the classics at Logos Online School who gave me an incredible
-						Classical Christian Education experience. Read more about my thoughts on homeschooling
-						and Christian thinking about cultural issues.
-					</p>
-					<Button class="mt-4" variant="outline">Read more</Button>
-				</div>
-			</div>
-			<div class="max-w-sm rounded overflow-hidden shadow-lg">
-				<div class="overflow-hidden">
-					<img
-						class="hover:scale-110 transition-all duration-500 cursor-pointer"
-						src={grad}
-						alt="cs"
-					/>
-				</div>
-				<div class="px-6 py-4">
-					<div class="font-bold text-xl mb-2">Coder to the Core.</div>
-					<p class="text-gray-700 text-base">
-						I studied computer science at UAFS, where I gained my passion for software engineering,
-						AI, and technology. Learn more about my research and development projects during
-						undergraduate.
-					</p>
-					<Button class="mt-4" variant="outline" href="/undergrad">Learn more</Button>
-				</div>
-			</div>
-			<div class="max-w-sm rounded overflow-hidden shadow-lg">
-				<div class="overflow-hidden">
-					<img
-						class="hover:scale-110 transition-all duration-500 cursor-pointer"
-						src={optom}
-						alt="op"
-					/>
-				</div>
-				<div class="px-6 py-4">
-					<div class="font-bold text-xl mb-2">A Vision For the Future.</div>
-					<p class="text-gray-700 text-base">
-						I'm currently a student at the Oklahoma School of Optometry learning to give
-						professional vision care for all. Keep up with my adventures in the field of optometry
-						and my plans for the future.
-					</p>
-					<Button class="mt-4" variant="outline">Learn more</Button>
-				</div>
+<div class="flex items-center justify-between w-full flex-col p-8 min-h-screen">
+	<div class="w-full max-w-3xl">
+		<a href="/">
+			<img src={profile} alt="justin_picture" height="100" width="100" class="rounded-full" />
+		</a>
+		<h1 class="font-medium text-gray-900 mt-3 text-xl">Justin Dang</h1>
+		<p class="text-gray-500">Doctor of Optometry (O.D.) Student</p>
+		<div class="flex flex-row justify-between items-center mt-6">
+			<div class="flex flex-row gap-x-3">
+				<a href="https://www.instagram.com/justin_a_dang/" target="_blank" rel="noreferer">
+					<img src={instagramIcon} alt="Instagram" /></a
+				>
+				<a href="https://github.com/jdang00" target="_blank" rel="noreferer">
+					<img src={githubIcon} alt="GitHub" /></a
+				>
+				<a
+					href="https://www.linkedin.com/in/justin-dang-08743b223/"
+					target="_blank"
+					rel="noreferer"
+				>
+					<img src={linkedinIcon} alt="LinkedIn" /></a
+				>
 			</div>
 		</div>
 	</div>
