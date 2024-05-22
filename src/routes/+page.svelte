@@ -14,11 +14,11 @@
 			<Tabs.List>
 				<Tabs.Trigger value="about">About</Tabs.Trigger>
 				<Tabs.Trigger value="technology">Technology</Tabs.Trigger>
-				<Tabs.Trigger value="gallery">Gallery</Tabs.Trigger>
+				<Tabs.Trigger value="courses">Courses</Tabs.Trigger>
 			</Tabs.List>
 			<Tabs.Content value="about"><About /></Tabs.Content>
 			<Tabs.Content value="technology"><Tech /></Tabs.Content>
-			<Tabs.Content value="gallery">Gallery</Tabs.Content>
+			<Tabs.Content value="courses">Courses</Tabs.Content>
 		</Tabs.Root>
 	</div>
 </div>

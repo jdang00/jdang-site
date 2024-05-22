@@ -31,6 +31,8 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@vercel/node": "^3.1.5",
+		"@vercel/postgres": "^0.8.0",
 		"bits-ui": "^0.21.9",
 		"clsx": "^2.1.1",
 		"tailwind-merge": "^2.3.0",
