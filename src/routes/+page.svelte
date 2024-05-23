@@ -1,9 +1,17 @@
-<script lang="ts">
+<script>
 	import '../app.css';
+
 	import Header from './comps/head.svelte';
+
 	import * as Tabs from '$lib/components/ui/tabs/index';
+
 	import About from './comps/about.svelte';
+
 	import Tech from './comps/tech.svelte';
+
+	import Courses from './comps/courses.svelte';
+
+	export let data;
 </script>
 
 <div class="flex items-center justify-between w-full flex-col p-8 min-h-screen">
@@ -13,14 +21,17 @@
 		<Tabs.Root value="about">
 			<Tabs.List>
 				<Tabs.Trigger value="about">About</Tabs.Trigger>
+
 				<Tabs.Trigger value="technology">Technology</Tabs.Trigger>
+
 				<Tabs.Trigger value="courses">Courses</Tabs.Trigger>
 			</Tabs.List>
+
 			<Tabs.Content value="about"><About /></Tabs.Content>
+
 			<Tabs.Content value="technology"><Tech /></Tabs.Content>
-			<Tabs.Content value="courses">Courses</Tabs.Content>
+
+			<Tabs.Content value="courses"><Courses {data} /></Tabs.Content>
 		</Tabs.Root>
 	</div>
 </div>
-
-<slot />
