@@ -11,6 +11,8 @@
 
 	import Courses from './comps/courses.svelte';
 
+	import Footer from './comps/footer.svelte';
+
 	export let data;
 </script>
 
@@ -33,5 +35,7 @@
 
 			<Tabs.Content value="courses"><Courses {data} /></Tabs.Content>
 		</Tabs.Root>
+
+		<Footer />
 	</div>
 </div>
