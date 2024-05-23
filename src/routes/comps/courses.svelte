@@ -75,7 +75,7 @@
 	let searchTerm = '';
 	$: queryResults = filteredCourses.filter((course: Course) => {
 		let nameTerm = course.coursename.toLowerCase();
-		let semesterTerm = course.coursename.toLowerCase();
+		let semesterTerm = course.semester.toLowerCase();
 		let numTerm = course.coursenumber.toLowerCase();
 		let instructorTerm = course.instructor.toLowerCase();
 
