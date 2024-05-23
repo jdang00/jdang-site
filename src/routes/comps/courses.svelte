@@ -89,7 +89,13 @@
 </script>
 
 <div class="mt-8">
-	<div class="flex flex-row gap-3">
+	<p class="text-gray-500">
+		Below are the course I took in pursuit of my undergraduate degree. Along with my B.S. in
+		Computer Science, I also took classes for a minor in math and took prerequisites for admissions
+		into optometry school.
+	</p>
+
+	<div class="flex flex-row gap-3 mt-10">
 		{#key resetVal}
 			<Select.Root>
 				<Select.Trigger class="w-[180px]">
