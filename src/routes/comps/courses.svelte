@@ -90,20 +90,22 @@
 				</Select.Content>
 			</Select.Root>
 		{/key}
-		{#if selectedOption}
-			<Select.Root>
-				<Select.Trigger class="w-[250px]">
-					<Select.Value placeholder={`Select ${selectedOption}`} id="filter" />
-				</Select.Trigger>
-				<Select.Content>
-					{#each additionalOptions as option}
-						<Select.Item value={option} on:click={() => (additionalOption = option)}
-							>{option}</Select.Item
-						>
-					{/each}
-				</Select.Content>
-			</Select.Root>
-		{/if}
+		{#key selectedOption}
+			{#if selectedOption}
+				<Select.Root>
+					<Select.Trigger class="w-[250px]">
+						<Select.Value placeholder={`Select ${selectedOption}`} id="filter" />
+					</Select.Trigger>
+					<Select.Content>
+						{#each additionalOptions as option}
+							<Select.Item value={option} on:click={() => (additionalOption = option)}
+								>{option}</Select.Item
+							>
+						{/each}
+					</Select.Content>
+				</Select.Root>
+			{/if}
+		{/key}
 		<Button variant="ghost" on:click={clearFilters}>Clear</Button>
 	</div>
 
