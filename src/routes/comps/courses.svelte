@@ -2,6 +2,7 @@
 	import * as Table from '$lib/components/ui/table';
 	import * as Select from '$lib/components/ui/select';
 	import { Button } from '$lib/components/ui/button';
+	import { Input } from '$lib/components/ui/input';
 
 	let selectedOption = '';
 	let additionalOption = 'none';
@@ -70,6 +71,21 @@
 		}
 		return true;
 	});
+
+	let searchTerm = '';
+	$: queryResults = filteredCourses.filter((course: Course) => {
+		let nameTerm = course.coursename.toLowerCase();
+		let semesterTerm = course.coursename.toLowerCase();
+		let numTerm = course.coursenumber.toLowerCase();
+		let instructorTerm = course.instructor.toLowerCase();
+
+		return (
+			nameTerm.includes(searchTerm.toLowerCase()) ||
+			semesterTerm.includes(searchTerm.toLowerCase()) ||
+			numTerm.includes(searchTerm.toLowerCase()) ||
+			instructorTerm.includes(searchTerm.toLowerCase())
+		);
+	});
 </script>
 
 <div class="mt-8">
@@ -107,6 +123,7 @@
 			{/if}
 		{/key}
 		<Button variant="ghost" on:click={clearFilters}>Clear</Button>
+		<Input type="search" placeholder="search" class="max-w-xs ml-auto" bind:value={searchTerm} />
 	</div>
 
 	<div class="mt-4">
@@ -120,7 +137,7 @@
 				</Table.Row>
 			</Table.Header>
 			<Table.Body>
-				{#each filteredCourses as course}
+				{#each queryResults as course}
 					<Table.Row>
 						<Table.Cell>{course.coursename}</Table.Cell>
 						<Table.Cell>{course.coursenumber}</Table.Cell>
