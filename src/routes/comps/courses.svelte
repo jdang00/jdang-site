@@ -6,6 +6,7 @@
 	let selectedOption = '';
 	let additionalOption = 'none';
 	let additionalOptions = ['none'];
+	let resetVal = 1;
 
 	$: if (selectedOption === 'term') {
 		additionalOptions = [
@@ -44,6 +45,7 @@
 		selectedOption = '';
 		additionalOption = 'none';
 		filteredCourses = data.courses;
+		resetVal = resetVal + 1;
 	}
 
 	type Course = {
@@ -72,24 +74,26 @@
 
 <div class="mt-8">
 	<div class="flex flex-row gap-3">
-		<Select.Root>
-			<Select.Trigger class="w-[180px]">
-				<Select.Value placeholder="Sort By" />
-			</Select.Trigger>
-			<Select.Content>
-				<Select.Item value="term" on:click={() => (selectedOption = 'term')}>Term</Select.Item>
-				<Select.Item value="requirements" on:click={() => (selectedOption = 'requirements')}
-					>Requirements</Select.Item
-				>
-				<Select.Item value="department" on:click={() => (selectedOption = 'department')}
-					>Department</Select.Item
-				>
-			</Select.Content>
-		</Select.Root>
+		{#key resetVal}
+			<Select.Root>
+				<Select.Trigger class="w-[180px]">
+					<Select.Value placeholder="Sort By" id="sort" />
+				</Select.Trigger>
+				<Select.Content>
+					<Select.Item value="term" on:click={() => (selectedOption = 'term')}>Term</Select.Item>
+					<Select.Item value="requirements" on:click={() => (selectedOption = 'requirements')}
+						>Requirements</Select.Item
+					>
+					<Select.Item value="department" on:click={() => (selectedOption = 'department')}
+						>Department</Select.Item
+					>
+				</Select.Content>
+			</Select.Root>
+		{/key}
 		{#if selectedOption}
 			<Select.Root>
 				<Select.Trigger class="w-[250px]">
-					<Select.Value placeholder={`Select ${selectedOption}`} />
+					<Select.Value placeholder={`Select ${selectedOption}`} id="filter" />
 				</Select.Trigger>
 				<Select.Content>
 					{#each additionalOptions as option}
