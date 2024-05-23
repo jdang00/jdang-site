@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as Table from '$lib/components/ui/table';
 	import * as Select from '$lib/components/ui/select';
-	export let data;
+	import { Button } from '$lib/components/ui/button';
 
 	let selectedOption = '';
 	let additionalOption = 'none';
@@ -24,11 +24,26 @@
 			'Spring 2024'
 		];
 	} else if (selectedOption === 'requirements') {
-		additionalOptions = ['Computer Science', 'Pre-Optometry', 'Math', 'General'];
+		additionalOptions = [
+			'Computer Science',
+			'Pre-Optometry',
+			'Math',
+			'General',
+			'AP Credit',
+			'Other'
+		];
 	} else if (selectedOption === 'department') {
 		additionalOptions = ['CS', 'MATH', 'BIOL', 'CHEM'];
 	} else {
 		additionalOptions = ['none'];
+	}
+
+	export let data: { courses: Course[] };
+
+	function clearFilters() {
+		selectedOption = '';
+		additionalOption = 'none';
+		filteredCourses = data.courses;
 	}
 
 	type Course = {
@@ -47,7 +62,7 @@
 		if (selectedOption === 'term') {
 			return course.semester === additionalOption;
 		} else if (selectedOption === 'requirements') {
-			return course.notes && course.notes.includes(additionalOption);
+			return course.notes && course.notes.includes(additionalOption + ' requirement');
 		} else if (selectedOption === 'department') {
 			return course.department === additionalOption;
 		}
@@ -85,6 +100,7 @@
 				</Select.Content>
 			</Select.Root>
 		{/if}
+		<Button variant="ghost" on:click={clearFilters}>Clear</Button>
 	</div>
 
 	<div class="mt-4">
