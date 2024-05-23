@@ -17,7 +17,7 @@
 				<h2 class="text-2xl">Mac mini</h2>
 				<p class="text-gray-400">Apple M1 / 8 GB RAM / 256 GB SSD / 2020</p>
 			</div>
-			<div class="border border-slate-600 roundedmd p-8">
+			<div class="border border-slate-600 rounded-md p-8">
 				<h2 class="text-2xl">Build R (Custom PC)</h2>
 				<p class="text-gray-400">
 					Ryzen 5 3600 / RTX 2070 / 32 GB RAM / 1 TB NVMe SSD / 1 TB SATA SSD + 2 TB HDD

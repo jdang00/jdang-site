@@ -129,7 +129,7 @@
 			{/if}
 		{/key}
 		<Button variant="ghost" on:click={clearFilters}>Clear</Button>
-		<Input type="search" placeholder="search" class="max-w-xs ml-auto" bind:value={searchTerm} />
+		<Input type="search" placeholder="Search" class="max-w-xs ml-auto" bind:value={searchTerm} />
 	</div>
 
 	<div class="mt-4">
