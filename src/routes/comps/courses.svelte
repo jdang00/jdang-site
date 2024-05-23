@@ -62,7 +62,7 @@
 		if (selectedOption === 'term') {
 			return course.semester === additionalOption;
 		} else if (selectedOption === 'requirements') {
-			return course.notes && course.notes.includes(additionalOption + ' requirement');
+			return course.notes && course.notes.includes(additionalOption);
 		} else if (selectedOption === 'department') {
 			return course.department === additionalOption;
 		}
