@@ -1,7 +1,7 @@
-import adapter from '@sveltejs/adapter-auto';
-import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
+import adapter from '@sveltejs/adapter-auto'
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte'
 
-import { mdsvex } from 'mdsvex';
+import { mdsvex } from 'mdsvex'
 
 /** @type {import('mdsvex').MdsvexOptions} */
 const mdsvexOptions = {
@@ -16,4 +16,5 @@ const config = {
 		adapter: adapter()
 	}
 }
-export default config;
+
+export default config

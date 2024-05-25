@@ -7,7 +7,7 @@
 
 	import About from './comps/about.svelte';
 
-	import Tech from './comps/tech.svelte';
+	import Tech from './technology/+page.svelte';
 
 	import Courses from './comps/courses.svelte';
 
@@ -41,7 +41,6 @@
 
 			<Tabs.Content value="blog"><Blog {data} /></Tabs.Content>
 		</Tabs.Root>
-
 		<Footer />
 	</div>
 </div>

@@ -2,6 +2,28 @@ import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { cubicOut } from "svelte/easing";
 
+export function formatDate(inputDate) {
+	const months = [
+		'January',
+		'February',
+		'March',
+		'April',
+		'May',
+		'June',
+		'July',
+		'August',
+		'September',
+		'October',
+		'November',
+		'December'
+	];
+
+	const [year, month, day] = inputDate.split('-').map(Number);
+	const formattedDate = `${months[month - 1]} ${day}, ${year}`;
+
+	return formattedDate;
+}
+
 export function cn(...inputs) {
 	return twMerge(clsx(inputs));
 }

@@ -76,3 +76,16 @@
     @apply bg-background text-foreground;
   }
 }
+
+
+	h2 {
+		font-size: 1.875rem; /* 30px */
+		line-height: 2.25rem; /* 36px */
+    margin-top: 1.5rem; /* 24px */  }
+
+    ul{
+      list-style-type: disc;
+      list-style-position: inside;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
