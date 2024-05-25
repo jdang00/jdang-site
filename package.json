@@ -33,6 +33,7 @@
 	"type": "module",
 	"dependencies": {
 		"@supabase/supabase-js": "^2.43.3",
+		"@tabler/icons-svelte": "^3.5.0",
 		"@vercel/node": "^3.1.5",
 		"@vercel/postgres": "^0.8.0",
 		"bits-ui": "^0.21.9",

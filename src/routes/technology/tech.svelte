@@ -10,15 +10,15 @@
 
 		<div class="flex flex-col gap-4">
 			<div class="border border-slate-600 rounded-md p-8">
-				<h2 class="text-2xl">MacBook Pro 14"</h2>
+				<h1 class="text-2xl">MacBook Pro 14"</h1>
 				<p class="text-gray-400">Apple M3 Pro / 18 GB RAM / 512 GB SSD / Space Black</p>
 			</div>
 			<div class="border border-slate-600 rounded-md p-8">
-				<h2 class="text-2xl">Mac mini</h2>
+				<h1 class="text-2xl">Mac mini</h1>
 				<p class="text-gray-400">Apple M1 / 8 GB RAM / 256 GB SSD / 2020</p>
 			</div>
 			<div class="border border-slate-600 rounded-md p-8">
-				<h2 class="text-2xl">Build R (Custom PC)</h2>
+				<h1 class="text-2xl">Build R (Custom PC)</h1>
 				<p class="text-gray-400">
 					Ryzen 5 3600 / RTX 2070 / 32 GB RAM / 1 TB NVMe SSD / 1 TB SATA SSD + 2 TB HDD
 				</p>
