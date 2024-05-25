@@ -1,10 +1,17 @@
-<script>
+<script lang="ts">
 	import { Button } from '$lib/components/ui/button';
+
+	export let highlighted: string = '';
+
+	const tabs = ['About', 'Technology', 'Courses', 'Blog'];
 </script>
 
 <div class="flex flex-row gap-2">
-	<Button variant="outline" href="/">About</Button>
-	<Button variant="outline" href="/technology">Technology</Button>
-	<Button variant="outline" href="/courses">Courses</Button>
-	<Button variant="outline" href="/blog">Blog</Button>
+	{#each tabs as tab}
+		{#if tab == highlighted}
+			<Button href="/{tab.toLowerCase()}">{tab}</Button>
+		{:else}
+			<Button variant="outline" href="/{tab.toLowerCase()}">{tab}</Button>
+		{/if}
+	{/each}
 </div>

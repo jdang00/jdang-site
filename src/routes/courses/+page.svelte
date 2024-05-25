@@ -15,7 +15,7 @@
 <div class="flex items-center justify-between w-full flex-col p-8 min-h-screen">
 	<div class="w-full max-w-3xl">
 		<Header />
-		<Tab />
+		<Tab highlighted="Courses" />
 		<Courses {data} />
 		<Footer />
 	</div>
