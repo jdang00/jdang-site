@@ -13,6 +13,8 @@
 
 	import Footer from './comps/footer.svelte';
 
+	import Blog from './comps/blog.svelte';
+
 	export let data;
 </script>
 
@@ -27,6 +29,8 @@
 				<Tabs.Trigger value="technology">Technology</Tabs.Trigger>
 
 				<Tabs.Trigger value="courses">Courses</Tabs.Trigger>
+
+				<Tabs.Trigger value="blog">Blog</Tabs.Trigger>
 			</Tabs.List>
 
 			<Tabs.Content value="about"><About /></Tabs.Content>
@@ -34,6 +38,8 @@
 			<Tabs.Content value="technology"><Tech /></Tabs.Content>
 
 			<Tabs.Content value="courses"><Courses {data} /></Tabs.Content>
+
+			<Tabs.Content value="blog"><Blog {data} /></Tabs.Content>
 		</Tabs.Root>
 
 		<Footer />
