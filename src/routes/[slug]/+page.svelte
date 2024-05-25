@@ -6,6 +6,7 @@
 	import { Button } from '$lib/components/ui/button';
 	export let data;
 	import IconArrowLeft from '@tabler/icons-svelte/IconArrowLeft.svelte';
+	import Footer from '../comps/footer.svelte';
 </script>
 
 <svelte:head>
@@ -34,5 +35,6 @@
 				<svelte:component this={data.content} />
 			</div>
 		</article>
+		<Footer />
 	</div>
 </div>
