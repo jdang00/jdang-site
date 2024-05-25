@@ -1,6 +1,6 @@
 ---
 title: The Noahic Covenant
-description: The Bible is full of covenants between God and man. What makes the Noahic one special?.
+description: The Bible is full of covenants between God and man. What makes the Noahic one special?
 date: '2023-4-14'
 categories:
   - theolgy
