@@ -7,14 +7,16 @@
 
 	import Footer from '../comps/footer.svelte';
 
-	import Tech from './tech.svelte';
+	import Blog from './blog.svelte';
+
+	export let data;
 </script>
 
 <div class="flex items-center justify-between w-full flex-col p-8 min-h-screen">
 	<div class="w-full max-w-3xl">
 		<Header />
 		<Tab />
-		<Tech />
+		<Blog {data} />
 		<Footer />
 	</div>
 </div>
