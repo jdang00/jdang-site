@@ -9,9 +9,9 @@
 </script>
 
 <div class="flex flex-col mx-auto">
-	<div class="flex flex-row mb-6 justify-between">
+	<div class="flex flex-row mb-6 justify-between gap-3">
 		<h1 class="text-xl font-semibold self-center">Blog Posts</h1>
-		<Input type="text" placeholder="Search" class="max-w-xs" />
+		<Input type="text" placeholder="Search" class="max-w-xs ml-auto" />
 
 		<Popover.Root portal={null}>
 			<div class="flex flex-row justify-end">
@@ -44,7 +44,7 @@
 					>
 
 					<Table.Cell>{post.description}</Table.Cell>
-					<Table.Cell>{formatDate(post.date)}</Table.Cell>
+					<Table.Cell class="w-[200px]">{formatDate(post.date)}</Table.Cell>
 					<Table.Cell class="w-[300px]">
 						<div class="flex flex-wrap gap-2">
 							{#each post.categories as category}

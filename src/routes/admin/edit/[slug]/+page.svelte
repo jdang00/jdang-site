@@ -1,7 +1,6 @@
 <script>
 	import '../../../../app.css';
 	import { Input } from '$lib/components/ui/input';
-	import { Textarea } from '$lib/components/ui/textarea';
 	export let data;
 </script>
 
@@ -10,7 +9,6 @@
 		<div class="mb-12"><h1 class="text-3xl">Edit</h1></div>
 		<div class="flex flex-col">
 			<div class="mb-12"><Input class="max-w" bind:value={data.meta.title} /></div>
-			<div><Textarea bind:value={data.meta} /></div>
 			<svelte:component this={data.content} />
 		</div>
 	</div>
