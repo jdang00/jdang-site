@@ -4,11 +4,27 @@
 	import { Badge } from '$lib/components/ui/badge';
 	import { Button } from '$lib/components/ui/button';
 	import { formatDate } from '$lib/utils';
-	import Edit from '@tabler/icons-svelte/IconEdit.svelte';
-	import Trash from '@tabler/icons-svelte/IconTrash.svelte';
+	import * as Popover from '$lib/components/ui/popover';
+	import { Input } from '$lib/components/ui/input/index.js';
 </script>
 
-<div>
+<div class="flex flex-col mx-auto">
+	<div class="flex flex-row mb-6 justify-between">
+		<h1 class="text-xl font-semibold self-center">Blog Posts</h1>
+		<Input type="text" placeholder="Search" class="max-w-xs" />
+
+		<Popover.Root portal={null}>
+			<div class="flex flex-row justify-end">
+				<Popover.Trigger asChild let:builder>
+					<Button builders={[builder]} variant="secondary">New Post</Button>
+				</Popover.Trigger>
+				<Popover.Content class="p-6"><Input type="file" /></Popover.Content>
+			</div>
+		</Popover.Root>
+	</div>
+</div>
+
+<div class="border rounded-md">
 	<Table.Root>
 		<Table.Header>
 			<Table.Row>
@@ -30,9 +46,11 @@
 					<Table.Cell>{post.description}</Table.Cell>
 					<Table.Cell>{formatDate(post.date)}</Table.Cell>
 					<Table.Cell>
-						{#each post.categories as category}
-							<Badge variant="secondary" class="me-3">{category}</Badge>
-						{/each}
+						<div class="flex flex-wrap gap-2">
+							{#each post.categories as category}
+								<Badge variant="secondary">{category}</Badge>
+							{/each}
+						</div>
 					</Table.Cell>
 				</Table.Row>
 			{/each}
