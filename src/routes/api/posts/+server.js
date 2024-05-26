@@ -4,7 +4,6 @@ async function getPosts() {
     let posts = [];
 
     const paths = import.meta.glob('/src/posts/*.md', { eager: true });
-    console.log(import.meta.glob('/src/posts/*.md', { eager: true }))
 
     for (const path in paths) {
 

@@ -78,14 +78,23 @@
 }
 
 
-h2 {
+.prose :is(h2) {
   font-size: 1.875rem; /* 30px */
   line-height: 2.25rem; /* 36px */
 margin-top: 1.5rem; /* 24px */  }
 
-ul{
+.prose :is(ul){
 list-style-type: disc;
 list-style-position: inside;
 margin-top: 1rem;
 margin-bottom: 1rem;
+}
+
+.prose pre {
+  max-inline-size: 100%;
+  padding: 2rem;
+  border-radius: 9px;
+  tab-size: 2;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
