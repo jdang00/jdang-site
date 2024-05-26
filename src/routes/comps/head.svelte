@@ -1,5 +1,5 @@
 <script>
-	const profile = 'https://utfs.io/f/50ee5591-301f-4c0f-b9cc-66b188de8d5e-1w6ku.png';
+	const profile = 'https://utfs.io/f/f42f91d1-4c4e-4b6f-a604-66170a807a71-1bqzy.webp';
 	const instagramIcon = 'https://utfs.io/f/eafd333b-264a-4e66-bb72-a2154efbce15-nyy399.svg';
 	const githubIcon = 'https://utfs.io/f/8f2a449a-1e47-4828-9f7e-6765cefcc135-rz0awz.svg';
 	const linkedinIcon = 'https://utfs.io/f/7d482c1c-109e-47c7-84da-3e65551be882-t5c96b.svg';

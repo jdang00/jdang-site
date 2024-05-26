@@ -11,7 +11,7 @@
 	<h1 class="font-semibold">Admin Dashboard</h1>
 	<Avatar.Root>
 		<Avatar.Image
-			src="https://utfs.io/f/50ee5591-301f-4c0f-b9cc-66b188de8d5e-1w6ku.png"
+			src="https://utfs.io/f/11a65a73-c4ff-4b9c-96d4-27c680ec9740-ge3if.webp"
 			alt="@jdang"
 		/>
 		<Avatar.Fallback>JD</Avatar.Fallback>
