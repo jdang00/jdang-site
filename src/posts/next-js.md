@@ -35,7 +35,7 @@ npm run dev
 
 Create a simple page:
 
-```
+```javascript
 import React from 'react';
 
 const Home = () => {

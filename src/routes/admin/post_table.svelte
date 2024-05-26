@@ -45,7 +45,7 @@
 
 					<Table.Cell>{post.description}</Table.Cell>
 					<Table.Cell>{formatDate(post.date)}</Table.Cell>
-					<Table.Cell>
+					<Table.Cell class="w-[300px]">
 						<div class="flex flex-wrap gap-2">
 							{#each post.categories as category}
 								<Badge variant="secondary">{category}</Badge>
