@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import * as Table from '$lib/components/ui/table';
 	export let data;
 	import { Badge } from '$lib/components/ui/badge';
@@ -6,12 +6,42 @@
 	import { formatDate } from '$lib/utils';
 	import * as Popover from '$lib/components/ui/popover';
 	import { Input } from '$lib/components/ui/input/index.js';
+
+	type Post = {
+		title: string;
+		description: string;
+		date: string;
+		categories: string[];
+		published: boolean;
+		slug: string;
+	};
+
+	let searchTerm = '';
+	$: queryResults = data.posts.filter((post: Post) => {
+		let titleTerm = post.title.toLowerCase();
+		let descTerm = post.description.toLowerCase();
+		let dateTerm = post.date.toLowerCase();
+		let dateFormat = formatDate(post.date).toLowerCase();
+		let tagsTerm = post.categories ? post.categories.join(' ').toLowerCase() : '';
+		let publishedTerm = post.published.toString();
+		let slugTerm = post.slug.toLowerCase();
+
+		return (
+			titleTerm.includes(searchTerm.toLowerCase()) ||
+			descTerm.includes(searchTerm.toLowerCase()) ||
+			dateTerm.includes(searchTerm.toLowerCase()) ||
+			dateFormat.includes(searchTerm.toLowerCase()) ||
+			publishedTerm.includes(searchTerm.toLowerCase()) ||
+			slugTerm.includes(searchTerm.toLowerCase()) ||
+			tagsTerm.includes(searchTerm.toLowerCase())
+		);
+	});
 </script>
 
 <div class="flex flex-col mx-auto">
 	<div class="flex flex-row mb-6 justify-between gap-3">
 		<h1 class="text-xl font-semibold self-center">Blog Posts</h1>
-		<Input type="text" placeholder="Search" class="max-w-xs ml-auto" />
+		<Input type="text" bind:value={searchTerm} placeholder="Search" class="max-w-xs ml-auto" />
 
 		<Popover.Root portal={null}>
 			<div class="flex flex-row justify-end">
@@ -35,7 +65,7 @@
 			</Table.Row>
 		</Table.Header>
 		<Table.Body>
-			{#each data.posts as post}
+			{#each queryResults as post}
 				<Table.Row>
 					<Table.Cell
 						><a class="hover:text-sky-600" href="/admin/edit/{post.slug}">

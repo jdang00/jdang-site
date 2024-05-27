@@ -24,7 +24,7 @@
 		</Button>
 
 		<article>
-			<div class="flex flex-row mb-6">
+			<div class="flex flex-row flex-wrap mb-6 gap-2">
 				<p class="text-gray-500 me-5">{formatDate(data.meta.date)}</p>
 				{#each data.meta.categories as categories}
 					<Badge variant="secondary" class="me-3">{categories}</Badge>
