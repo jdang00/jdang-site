@@ -40,6 +40,7 @@
 		"bits-ui": "^0.21.9",
 		"clsx": "^2.1.1",
 		"lucide-svelte": "^0.379.0",
+		"mode-watcher": "^0.3.0",
 		"npm": "^10.8.0",
 		"shiki": "^1.6.0",
 		"tailwind-merge": "^2.3.0",

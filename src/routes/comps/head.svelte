@@ -8,18 +8,18 @@
 <a href="/">
 	<img src={profile} alt="justin_picture" height="100" width="100" class="rounded-full" />
 </a>
-<h1 class="font-medium text-gray-900 mt-3 text-3xl">Justin Dang</h1>
+<h1 class="font-medium mt-3 text-3xl">Justin Dang</h1>
 <p class="text-gray-500">Doctor of Optometry (O.D.) Student</p>
 <div class="flex flex-row justify-between items-center mt-6">
 	<div class="flex flex-row gap-x-3">
 		<a href="https://www.instagram.com/justin_a_dang/" target="_blank" rel="noreferer">
-			<img src={instagramIcon} alt="Instagram" /></a
+			<img src={instagramIcon} alt="Instagram" class="icon" /></a
 		>
 		<a href="https://github.com/jdang00" target="_blank" rel="noreferer">
-			<img src={githubIcon} alt="GitHub" /></a
+			<img src={githubIcon} alt="GitHub" class="icon" /></a
 		>
 		<a href="https://www.linkedin.com/in/justin-a-dang" target="_blank" rel="noreferer">
-			<img src={linkedinIcon} alt="LinkedIn" /></a
+			<img src={linkedinIcon} alt="LinkedIn" class="icon" /></a
 		>
 	</div>
 </div>
