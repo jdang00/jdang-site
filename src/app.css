@@ -39,8 +39,8 @@
   .dark {
     --background: 0 0% 0%;
     --foreground: 210 40% 98%;
- 
-    --muted: 215 85% 99%;
+    
+    --muted: 0 0% 25.1%;
     --muted-foreground: 215 20.2% 65.1%;
  
     --popover: 0 0% 0%;
@@ -55,10 +55,10 @@
     --primary: 213 40% 98%;
     --primary-foreground: 222.2 47.4% 11.2%;
  
-    --secondary: 217.2 32.6% 17.5%;
+    --secondary: 33.33 5.45% 32.35%;
     --secondary-foreground: 210 40% 98%;
  
-    --accent: 215 28% 17%;
+    --accent: 0 0% 25.1%;
     --accent-foreground: 210 40% 98%;
  
     --destructive: 0 62.8% 30.6%;
@@ -74,7 +74,7 @@
     }
 
     p{
-      color: rgb(148 163 184);
+      color: #d4d4d4;
     }
     
   }

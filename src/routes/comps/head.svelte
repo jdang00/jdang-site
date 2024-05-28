@@ -3,11 +3,18 @@
 	const instagramIcon = 'https://utfs.io/f/eafd333b-264a-4e66-bb72-a2154efbce15-nyy399.svg';
 	const githubIcon = 'https://utfs.io/f/8f2a449a-1e47-4828-9f7e-6765cefcc135-rz0awz.svg';
 	const linkedinIcon = 'https://utfs.io/f/7d482c1c-109e-47c7-84da-3e65551be882-t5c96b.svg';
+
+	import Theme from '../button.svelte';
 </script>
 
-<a href="/">
-	<img src={profile} alt="justin_picture" height="100" width="100" class="rounded-full" />
-</a>
+<div class="flex flex-row justify-between">
+	<a href="/">
+		<img src={profile} alt="justin_picture" height="100" width="100" class="rounded-full" />
+	</a>
+
+	<Theme />
+</div>
+
 <h1 class="font-medium mt-3 text-3xl">Justin Dang</h1>
 <p class="text-gray-500">Doctor of Optometry (O.D.) Student</p>
 <div class="flex flex-row justify-between items-center mt-6">

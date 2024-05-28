@@ -88,6 +88,10 @@
 	});
 </script>
 
+<svelte:head>
+	<title>Courses</title>
+</svelte:head>
+
 <div class="mt-8">
 	<p class="text-gray-500">
 		Below are the course I took in pursuit of my undergraduate degree. Along with my B.S. in
