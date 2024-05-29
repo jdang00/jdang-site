@@ -5,7 +5,8 @@
 	import '../../app.css';
 	import { Button } from '$lib/components/ui/button';
 	export let data;
-	import IconArrowLeft from '@tabler/icons-svelte/IconArrowLeft.svelte';
+	import { ArrowLeft } from 'lucide-svelte';
+
 	import Footer from '../comps/footer.svelte';
 </script>
 
@@ -20,7 +21,7 @@
 		<Header />
 
 		<Button variant="secondary" class="mb-6" href="/blog">
-			<IconArrowLeft stroke={2} />
+			<ArrowLeft />
 		</Button>
 
 		<article>
