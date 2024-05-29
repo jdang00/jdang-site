@@ -3,8 +3,22 @@
 	import BlogTable from './post_table.svelte';
 	import * as Avatar from '$lib/components/ui/avatar/index.js';
 	import Theme from '../button.svelte';
+	import * as Popover from '$lib/components/ui/popover';
+	import { Button } from '$lib/components/ui/button/index.js';
 
 	export let data;
+
+	import { goto } from '$app/navigation';
+
+	async function logout() {
+		const response = await fetch('/api/logout', {
+			method: 'POST'
+		});
+
+		if (response.ok) {
+			goto('/login');
+		}
+	}
 </script>
 
 <svelte:head>
@@ -16,14 +30,22 @@
 	<h1 class="font-semibold">Admin Dashboard</h1>
 	<div class="flex flex-row gap-4">
 		<Theme />
-
-		<Avatar.Root>
-			<Avatar.Image
-				src="https://utfs.io/f/11a65a73-c4ff-4b9c-96d4-27c680ec9740-ge3if.webp"
-				alt="@jdang"
-			/>
-			<Avatar.Fallback>JD</Avatar.Fallback>
-		</Avatar.Root>
+		<Popover.Root>
+			<Popover.Trigger
+				><Avatar.Root>
+					<Avatar.Image
+						src="https://utfs.io/f/11a65a73-c4ff-4b9c-96d4-27c680ec9740-ge3if.webp"
+						alt="@jdang"
+					/>
+					<Avatar.Fallback>JD</Avatar.Fallback>
+				</Avatar.Root></Popover.Trigger
+			>
+			<Popover.Content
+				><div class="flex flex-col justify-center items-center">
+					<Button variant="outline" class="max-w-fit" on:click={logout}>Logout</Button>
+				</div></Popover.Content
+			>
+		</Popover.Root>
 	</div>
 </div>
 

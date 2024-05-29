@@ -1,10 +1,13 @@
 import { redirect } from '@sveltejs/kit';
+import supabase from "$lib/supabaseClient";
+
 
 /** @type {import('@sveltejs/kit').Handle} */
 export async function handle({ event, resolve }) {
-  const accessCookie = event.cookies.get('access');
-
-  if (event.url.pathname.startsWith('/admin') && accessCookie !== 'true') {
+  const sessionId = event.cookies.get('session_id');
+  const sessionStore = await supabase.from('sessions').select('sessionid').eq('sessionid', sessionId).single()
+  const session = sessionId ? sessionStore.data?.sessionid : null;
+  if (event.url.pathname.startsWith('/admin') && !session) {
     throw redirect(302, '/login');
   }
 
