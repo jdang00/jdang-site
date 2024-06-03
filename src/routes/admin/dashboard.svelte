@@ -37,16 +37,18 @@
 		<DropdownMenu.Root>
 			<DropdownMenu.Trigger>
 				<Avatar.Root>
-					<Avatar.Image
-						src="https://utfs.io/f/11a65a73-c4ff-4b9c-96d4-27c680ec9740-ge3if.webp"
-						alt="@jdang"
-					/>
-					<Avatar.Fallback>JD</Avatar.Fallback>
+					<Avatar.Image src={data.userData.avatar} alt={data.userData.firstName} />
+					<Avatar.Fallback>
+						{data.userData.firstName.charAt(0)}{data.userData.lastName.charAt(0)}
+					</Avatar.Fallback>
 				</Avatar.Root>
 			</DropdownMenu.Trigger>
 			<DropdownMenu.Content>
 				<DropdownMenu.Group>
-					<DropdownMenu.Label>My Account</DropdownMenu.Label>
+					<DropdownMenu.Label
+						>{data.userData.firstName}
+						{data.userData.lastName}</DropdownMenu.Label
+					>
 					<DropdownMenu.Separator />
 					<DropdownMenu.Item><User class="mr-2 h-4 w-4" /><span>User</span></DropdownMenu.Item>
 					<DropdownMenu.Item
@@ -63,6 +65,10 @@
 
 <div class="flex items-center justify-between w-full flex-col p-8 min-h-screen">
 	<div class="w-full max-w-7xl mt-6">
-		<BlogTable {data} />
+		{#if data.userData.firstName === 'Justin'}
+			<BlogTable {data} />
+		{:else}
+			<h1 class="text-center text-3xl font-medium">Hi, {data.userData.firstName}!</h1>
+		{/if}
 	</div>
 </div>

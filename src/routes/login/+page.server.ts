@@ -68,8 +68,28 @@ export const actions: Actions = {
         httpOnly: true,
         maxAge: 60 * 60 * 24
       });
+      cookies.set('firstname', data.firstname, {
+        path: '/',
+        sameSite: 'strict',
+        httpOnly: true,
+        maxAge: 60 * 60 * 24,
+      });
+      cookies.set('lastname', data.lastname, {
+        path: '/',
+        sameSite: 'strict',
+        httpOnly: true,
+        maxAge: 60 * 60 * 24,
+      });
+      cookies.set('avatar', data.avatar, {
+        path: '/',
+        sameSite: 'strict',
+        httpOnly: true,
+        maxAge: 60 * 60 * 24,
+      });
       throw redirect(302, '/admin');
+
     }
+
 
     return {
       form,
