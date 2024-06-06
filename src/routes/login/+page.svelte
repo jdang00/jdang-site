@@ -9,9 +9,4 @@
 	<a class="font-semibold" href="/">jdang-site</a>
 </div>
 
-<div class="container flex-col items-center justify-center mx-auto mt-48 max-w-md">
-	<div class="rounded shadow-2xl px-16 py-28 w-auto">
-		<h1 class="font-semibold text-3xl mb-8">Login</h1>
-		<Login data={data.form} />
-	</div>
-</div>
+<Login data={data.form} />
