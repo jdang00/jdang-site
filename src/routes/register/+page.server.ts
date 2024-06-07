@@ -33,7 +33,7 @@ export const actions: Actions = {
             password: hashedPassword,
             firstname: form.data.firstname,
             lastname: form.data.lastname,
-            email: form.data.lastname
+            email: form.data.email
         })
 
 

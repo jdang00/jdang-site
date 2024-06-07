@@ -78,7 +78,7 @@
 					</Form.Control>
 					<Form.FieldErrors />
 				</Form.Field>
-				<Form.Button class="w-full">Login</Form.Button>
+				<Form.Button class="w-full">Register</Form.Button>
 			</form>
 		</Card.Content>
 	</Card.Root>

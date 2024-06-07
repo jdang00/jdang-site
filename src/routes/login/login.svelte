@@ -29,12 +29,7 @@
 					<Form.Control let:attrs>
 						<Form.Label>Username</Form.Label>
 
-						<Input
-							{...attrs}
-							bind:value={$formData.username}
-							placeholder="mbohl@walmart.com"
-							type="username"
-						/>
+						<Input {...attrs} bind:value={$formData.username} placeholder="mbohl" type="username" />
 					</Form.Control>
 
 					<Form.FieldErrors />

@@ -6,7 +6,6 @@ import { formSchema } from './schema.js';
 import supabase from '$lib/supabaseClient';
 import bcrypt from 'bcrypt';
 import { redirect } from '@sveltejs/kit';
-import { userStore } from '../../stores/userStore.js';
 
 export const load: PageServerLoad = async ({ cookies }) => {
 	const sessionId = cookies.get('session_id');
@@ -14,14 +13,16 @@ export const load: PageServerLoad = async ({ cookies }) => {
 	if (sessionId) {
 		const { data, error } = await supabase
 			.from('sessions')
-			.select('session_id ,expires_at')
+			.select('session_id ,expires_at, user_id')
 			.eq('session_id', sessionId)
 			.single();
 
 		if (data && !error) {
+
 			throw redirect(302, '/admin');
 		}
 	}
+
 
 	return {
 		form: await superValidate(zod(formSchema))
@@ -52,14 +53,12 @@ export const actions: Actions = {
 
 		if (data) {
 			const isPasswordValid = await bcrypt.compare(form.data.password, data.password);
-			console.log(data.password)
-
 
 			if (isPasswordValid) {
 				const sessionID = crypto.randomUUID();
 				const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000);
 
-				const { data: insertedSession, error } = await supabase.from('sessions').insert({
+				const { error } = await supabase.from('sessions').insert({
 					session_id: sessionID,
 					user_id: data.id,
 					expires_at: expiresAt
@@ -76,24 +75,8 @@ export const actions: Actions = {
 					httpOnly: true,
 					maxAge: 60 * 60 * 24
 				});
-				cookies.set('firstname', data.firstname, {
-					path: '/',
-					sameSite: 'strict',
-					httpOnly: true,
-					maxAge: 60 * 60 * 24
-				});
-				cookies.set('lastname', data.lastname, {
-					path: '/',
-					sameSite: 'strict',
-					httpOnly: true,
-					maxAge: 60 * 60 * 24
-				});
-				cookies.set('avatar', data.avatar, {
-					path: '/',
-					sameSite: 'strict',
-					httpOnly: true,
-					maxAge: 60 * 60 * 24
-				});
+
+
 
 				throw redirect(302, '/admin');
 			} else {
