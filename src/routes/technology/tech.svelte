@@ -15,7 +15,7 @@
 
 	<div class="grid md:grid-cols-2 gap-8">
 		<div class="grid gap-6">
-			<div class="bg-gray-100 dark:bg-gray-800 rounded-lg p-6 grid gap-4">
+			<div class="bg-gray-100 dark:bg-neutral-900 rounded-lg p-6 grid gap-4">
 				<div class="flex items-center justify-between">
 					<h2 class="text-xl font-bold">Mac MB</h2>
 					<div class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
@@ -57,7 +57,7 @@
 					that handles everything I throw at it with ease.
 				</p>
 			</div>
-			<div class="bg-gray-100 dark:bg-gray-800 rounded-lg p-6 grid gap-4">
+			<div class="bg-gray-100 dark:bg-neutral-900 rounded-lg p-6 grid gap-4">
 				<div class="flex items-center justify-between">
 					<h2 class="text-xl font-bold">Smol</h2>
 					<div class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
@@ -101,7 +101,7 @@
 			</div>
 		</div>
 		<div class="grid gap-6">
-			<div class="bg-gray-100 dark:bg-gray-800 rounded-lg p-6 grid gap-4">
+			<div class="bg-gray-100 dark:bg-neutral-900 rounded-lg p-6 grid gap-4">
 				<div class="flex items-center justify-between">
 					<h2 class="text-xl font-bold">Build R</h2>
 					<div class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
@@ -143,7 +143,7 @@
 					that handles everything I throw at it with ease.
 				</p>
 			</div>
-			<div class="bg-gray-100 dark:bg-gray-800 rounded-lg p-6 grid gap-4">
+			<div class="bg-gray-100 dark:bg-neutral-900 rounded-lg p-6 grid gap-4">
 				<div class="flex items-center justify-between">
 					<h2 class="text-xl font-bold">Apple Watch SE</h2>
 					<div class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">

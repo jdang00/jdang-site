@@ -5,7 +5,6 @@
 	import { type SuperValidated, type Infer, superForm } from 'sveltekit-superforms';
 	import { zodClient } from 'sveltekit-superforms/adapters';
 	import * as Card from '$lib/components/ui/card';
-	import { Button } from '$lib/components/ui/button/index.js';
 
 	export let data: SuperValidated<Infer<FormSchema>>;
 
@@ -16,45 +15,70 @@
 	const { form: formData, enhance } = form;
 </script>
 
-<div class="flex items-center justify-center min-h-[75vh] px-4 md:px-6">
-	<Card.Root class="w-full max-w-sm py-6">
-		<Card.Header class="space-y-1 text-center">
-			<Card.Title class="text-2xl font-bold dark:text-slate-200">Login</Card.Title>
-			<Card.Description>Login to your account</Card.Description>
+<div class="mx-auto max-w-md space-y-6 py-12">
+	<Card.Root class="w-full max-w-md py-12">
+		<Card.Header class="space-y-2 text-center">
+			<Card.Title class="text-2xl font-bold dark:text-slate-200">Register</Card.Title>
+			<Card.Description>Create your account to get started.</Card.Description>
 		</Card.Header>
 
 		<Card.Content>
 			<form method="POST" use:enhance class="space-y-4">
+				<div class="grid grid-cols-2 gap-4">
+					<Form.Field {form} name="firstname">
+						<Form.Control let:attrs>
+							<Form.Label>First Name</Form.Label>
+
+							<Input {...attrs} bind:value={$formData.firstname} placeholder="Madeline" required />
+						</Form.Control>
+
+						<Form.FieldErrors />
+					</Form.Field>
+					<Form.Field {form} name="lastname">
+						<Form.Control let:attrs>
+							<Form.Label>Last Name</Form.Label>
+
+							<Input {...attrs} bind:value={$formData.lastname} placeholder="Bohlman" required />
+						</Form.Control>
+						<Form.FieldErrors />
+					</Form.Field>
+				</div>
 				<Form.Field {form} name="username">
 					<Form.Control let:attrs>
 						<Form.Label>Username</Form.Label>
 
-						<Input
-							{...attrs}
-							bind:value={$formData.username}
-							placeholder="mbohl@walmart.com"
-							type="username"
-						/>
+						<Input {...attrs} bind:value={$formData.username} placeholder="mbohl" required />
 					</Form.Control>
-
 					<Form.FieldErrors />
 				</Form.Field>
+				<Form.Field {form} name="email">
+					<Form.Control let:attrs>
+						<Form.Label>Email</Form.Label>
 
+						<Input
+							{...attrs}
+							bind:value={$formData.email}
+							placeholder="mbohl@walmart.com"
+							required
+						/>
+					</Form.Control>
+					<Form.FieldErrors />
+				</Form.Field>
 				<Form.Field {form} name="password">
 					<Form.Control let:attrs>
 						<Form.Label>Password</Form.Label>
+
 						<Input
 							{...attrs}
 							bind:value={$formData.password}
 							placeholder="••••••••"
+							required
 							type="password"
 						/>
 					</Form.Control>
 					<Form.FieldErrors />
 				</Form.Field>
-
 				<Form.Button class="w-full">Login</Form.Button>
-				<Button variant="link" href="/register" class="w-full">Create Account</Button>
 			</form>
 		</Card.Content>
 	</Card.Root>
