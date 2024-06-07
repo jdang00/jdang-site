@@ -4,6 +4,7 @@
 	import * as Avatar from '$lib/components/ui/avatar/index.js';
 	import Theme from '../button.svelte';
 	import * as DropdownMenu from '$lib/components/ui/dropdown-menu';
+	import { userStore } from '../../stores/userStore.js';
 
 	import { LogOut } from 'lucide-svelte';
 	import { User } from 'lucide-svelte';
@@ -22,6 +23,8 @@
 			goto('/login');
 		}
 	}
+
+	console.log($userStore);
 </script>
 
 <svelte:head>
@@ -68,7 +71,7 @@
 		{#if data.userData.firstName === 'Justin'}
 			<BlogTable {data} />
 		{:else}
-			<h1 class="text-center text-3xl font-medium">Hi, {data.userData.firstName}!</h1>
+			<h1 class="text-center text-3xl font-medium">Hi, {$userStore.firstname}!</h1>
 		{/if}
 	</div>
 </div>
