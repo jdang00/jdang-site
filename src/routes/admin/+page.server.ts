@@ -1,5 +1,10 @@
 import { redirect } from '@sveltejs/kit';
 import supabase from '$lib/supabaseClient';
+import { superValidate } from "sveltekit-superforms";
+import { zod } from "sveltekit-superforms/adapters";
+import { formSchema } from "./schema";
+import type { PageServerLoad, Actions } from "./$types.js";
+import { fail } from "@sveltejs/kit";
 
 export async function load({ fetch, cookies }) {
   const sessionId = cookies.get('session_id');
@@ -31,8 +36,8 @@ export async function load({ fetch, cookies }) {
   const profiles: Profile = sessionData.profiles
 
   const userData = {
-    firstName: profiles.firstname,
-    lastName: profiles.lastname,
+    firstname: profiles.firstname,
+    lastname: profiles.lastname,
     avatar: profiles.avatar,
     email: profiles.email,
     username: profiles.username,
@@ -48,6 +53,23 @@ export async function load({ fetch, cookies }) {
 
   return {
     posts: posts ?? [],
-    userData
+    userData,
+    form: await superValidate(zod(formSchema)),
+
   };
 }
+
+
+export const actions: Actions = {
+  default: async (event) => {
+    const form = await superValidate(event, zod(formSchema));
+    if (!form.valid) {
+      return fail(400, {
+        form,
+      });
+    }
+    return {
+      form,
+    };
+  },
+};

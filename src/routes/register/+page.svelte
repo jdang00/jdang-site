@@ -1,7 +1,8 @@
 <script lang="ts">
 	import '../../app.css';
-	import type { PageData } from './$types.js';
 	import Register from './register.svelte';
+
+	import type { PageData } from './$types.js';
 	export let data: PageData;
 </script>
 

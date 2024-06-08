@@ -30,7 +30,10 @@ export const load: PageServerLoad = async ({ cookies }) => {
 };
 
 export const actions: Actions = {
+
+
 	default: async ({ request, cookies }) => {
+
 		const form = await superValidate(request, zod(formSchema));
 
 		if (!form.valid) {
@@ -47,9 +50,13 @@ export const actions: Actions = {
 			.select()
 			.eq('username', user)
 			.single();
+
 		if (error) {
 			return fail(400, { form, message: 'Invalid username or password' });
 		}
+
+
+
 
 		if (data) {
 			const isPasswordValid = await bcrypt.compare(form.data.password, data.password);

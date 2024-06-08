@@ -1,13 +1,13 @@
 <script lang="ts">
 	import * as Dialog from '$lib/components/ui/dialog';
+	import EditForm from './edit_form.svelte';
+	export let data;
 </script>
 
 <Dialog.Content>
 	<Dialog.Header>
-		<Dialog.Title>Are you sure absolutely sure?</Dialog.Title>
-		<Dialog.Description>
-			This action cannot be undone. This will permanently delete your account and remove your data
-			from our servers.
-		</Dialog.Description>
+		<Dialog.Title>Edit Profile</Dialog.Title>
+		<Dialog.Description>Update your profile information.</Dialog.Description>
 	</Dialog.Header>
+	<EditForm {data} />
 </Dialog.Content>

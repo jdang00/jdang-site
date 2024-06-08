@@ -38,6 +38,7 @@
 	"dependencies": {
 		"@supabase/supabase-js": "^2.43.3",
 		"@tabler/icons-svelte": "^3.5.0",
+		"@uploadthing/svelte": "^6.6.0",
 		"@vercel/node": "^3.1.5",
 		"@vercel/postgres": "^0.8.0",
 		"bcrypt": "^5.1.1",
@@ -50,6 +51,7 @@
 		"npm": "^10.8.0",
 		"shiki": "^1.6.0",
 		"tailwind-merge": "^2.3.0",
-		"tailwind-variants": "^0.2.1"
+		"tailwind-variants": "^0.2.1",
+		"uploadthing": "^6.12.0"
 	}
 }

@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import '../../app.css';
 	import BlogTable from './post_table.svelte';
 	import * as Avatar from '$lib/components/ui/avatar/index.js';
@@ -38,18 +38,18 @@
 			<Theme />
 			<DropdownMenu.Root>
 				<DropdownMenu.Trigger>
-					<Avatar.Root>
-						<Avatar.Image src={data.userData.avatar} alt={data.userData.firstName} />
+					<Avatar.Root class="h-10 w-10">
+						<Avatar.Image src={data.userData.avatar} alt={data.userData.firstname} />
 						<Avatar.Fallback>
-							{data.userData.firstName.charAt(0)}{data.userData.lastName.charAt(0)}
+							{data.userData.firstname.charAt(0)}{data.userData.lastname.charAt(0)}
 						</Avatar.Fallback>
 					</Avatar.Root>
 				</DropdownMenu.Trigger>
 				<DropdownMenu.Content>
 					<DropdownMenu.Group>
 						<DropdownMenu.Label
-							>{data.userData.firstName}
-							{data.userData.lastName}</DropdownMenu.Label
+							>{data.userData.firstname}
+							{data.userData.lastname}</DropdownMenu.Label
 						>
 						<DropdownMenu.Separator />
 						<Dialog.Trigger class="w-full">
@@ -67,14 +67,14 @@
 			</DropdownMenu.Root>
 		</div>
 	</div>
-	<UserEdit />
+	<UserEdit {data} />
 
 	<div class="flex items-center justify-between w-full flex-col p-8 min-h-screen">
 		<div class="w-full max-w-7xl mt-6">
-			{#if data.userData.firstName === 'Justin'}
+			{#if data.userData.firstname === 'Justin'}
 				<BlogTable {data} />
 			{:else}
-				<h1 class="text-center text-3xl font-medium">Hi, {data.userData.firstName}</h1>
+				<h1 class="text-center text-3xl font-medium">Hi, {data.userData.firstname}</h1>
 			{/if}
 		</div>
 	</div>
