@@ -3,7 +3,7 @@ import supabase from '$lib/supabaseClient';
 import { superValidate } from "sveltekit-superforms";
 import { zod } from "sveltekit-superforms/adapters";
 import { formSchema } from "./schema";
-import type { PageServerLoad, Actions } from "./$types.js";
+import type { Actions } from "./$types.js";
 import { fail } from "@sveltejs/kit";
 
 export async function load({ fetch, cookies }) {

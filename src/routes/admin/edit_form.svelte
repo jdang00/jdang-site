@@ -33,38 +33,38 @@
 	const uploader = createUploader('imageUploader', {
 		onClientUploadComplete: (res) => {
 			console.log(`onClientUploadComplete`, res);
-			alert('Upload Completed');
+			console.log(res);
 		},
 		onUploadError: (error: Error) => {
 			alert(`ERROR! ${error.message}`);
 		}
 	});
 
+	let profile = $formData.avatar;
+
 	import { Upload } from 'lucide-svelte';
 </script>
 
 <form method="POST" use:enhance class="space-y-4">
-	<div class="flex flex-row justify-between mb-10">
+	<div class="flex flex-row justify-around mb-10">
 		<Avatar.Root class="h-32 w-32 self-center">
-			<Avatar.Image src={$formData.avatar} alt={$formData.firstname} />
+			<Avatar.Image src={profile} alt={$formData.firstname} />
 			<Avatar.Fallback>
 				{data.userData.firstname.charAt(0)}{data.userData.lastname.charAt(0)}
 			</Avatar.Fallback>
 		</Avatar.Root>
 
-		<UploadDropzone {uploader} class="px-12 py-8">
-			<i slot="upload-icon" let:state>
+		<UploadDropzone {uploader} class="p-4">
+			<i slot="upload-icon">
 				<Upload />
 			</i>
 			<span slot="button-content" let:state>
-				{state.isUploading ? 'Uploading...' : 'Pick A File'}
+				{state.isUploading ? 'Uploading...' : 'Upload New Photo'}
 			</span>
 			<span slot="label" let:state>
 				{state.ready ? 'Ready to upload' : 'Loading...'}
 			</span>
-			<span slot="allowed-content" let:state>
-				You can choose between {state.fileTypes.join(', ')} files
-			</span>
+			<span slot="allowed-content" class="text-gray-500"> JPG, PNG, or GIF images.</span>
 		</UploadDropzone>
 	</div>
 
