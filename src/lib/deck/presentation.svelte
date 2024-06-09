@@ -120,9 +120,19 @@
 </Slide>
 
 <Slide>
+	<div class="h-[700px] flex justify-center">
+		<img
+			src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Portret_van_Desiderius_Erasmus%2C_RP-P-OB-7388.jpg/800px-Portret_van_Desiderius_Erasmus%2C_RP-P-OB-7388.jpg"
+			alt="TR"
+			class="object-fill"
+		/>
+	</div>
+</Slide>
+
+<Slide>
 	<p class="mb-16 text-left">Textus Receptus Based English Translations</p>
 	<div class="flex flex-row gap-6">
-		<div class="p-12 bg-blue-400 rounded-lg flex flex-col">
+		<div class="p-12 bg-green-400 rounded-lg flex flex-col">
 			<span>Geneva Bible</span><span class="text-sm">c.1560</span>
 			<img
 				src="https://utfs.io/f/e7b801a4-7168-4221-b314-4e7282f5e7a4-mmbypf.webp"
@@ -130,7 +140,7 @@
 				class="rounded-lg"
 			/>
 		</div>
-		<div class="p-12 bg-blue-400 rounded-lg flex flex-col">
+		<div class="p-12 bg-green-400 rounded-lg flex flex-col">
 			<span>Bishop's Bible</span><span class="text-sm">c.1568</span>
 			<img
 				src="https://utfs.io/f/b50f65c0-c695-442c-8f76-00a52c590943-1zobf.webp"
@@ -139,7 +149,7 @@
 			/>
 		</div>
 
-		<div class="p-12 bg-blue-400 rounded-lg flex flex-col">
+		<div class="p-12 bg-green-400 rounded-lg flex flex-col">
 			<span>King James Version</span><span class="text-sm">c.1611</span>
 			<img
 				src="https://utfs.io/f/0bde225e-8708-4201-ba49-8b418801c214-264rg.webp"
@@ -147,6 +157,43 @@
 				class="rounded-lg object-fill"
 			/>
 		</div>
+	</div>
+</Slide>
+
+<Slide>
+	<p class="mb-16 text-left">Critical Text Based English Translations</p>
+	<div class="flex flex-row gap-6 justify-center">
+		<div class="p-12 bg-blue-400 rounded-lg flex flex-col">
+			<span> English Revised Version</span><span class="text-sm">c.1885</span>
+			<img
+				src="https://utfs.io/f/f5f028aa-c0dd-438b-9ad6-960788963f30-210.webp"
+				alt="WT"
+				class="rounded-lg object-fill"
+			/>
+		</div>
+		<div class="p-12 bg-blue-400 rounded-lg flex flex-col">
+			<span>American Standard Version</span><span class="text-sm">c.1901</span>
+			<img
+				src="https://utfs.io/f/13ddab41-dc1f-4c77-a8e5-6486225288bc-1e90.webp"
+				alt="WT"
+				class="rounded-lg object-fill"
+			/>
+		</div>
+
+		<div class="p-12 bg-blue-400 rounded-lg flex flex-col">
+			<span>Revised Standard Version</span><span class="text-sm">c.1952</span>
+			<img
+				src="https://utfs.io/f/71abfa8e-03ab-46b3-9a11-9d034bd84326-1qut.webp"
+				alt="WT"
+				class="rounded-lg object-fill"
+			/>
+		</div>
+	</div>
+</Slide>
+
+<Slide>
+	<div class="flex justify-center">
+		<img src="https://utfs.io/f/d60f8f25-c29e-4962-91bb-b0c27992f65d-30fu4b.png" alt="it" />
 	</div>
 </Slide>
 
