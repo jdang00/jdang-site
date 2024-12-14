@@ -15,7 +15,7 @@
 	<Theme />
 </div>
 
-<h1 class="font-medium mt-3 text-3xl">Justin Dang</h1>
+<h1 class="font-medium mt-3 text-3xl">Justin A. Dang</h1>
 <p class="text-gray-500">Doctor of Optometry (O.D.) Student</p>
 <div class="flex flex-row justify-between items-center mt-6">
 	<div class="flex flex-row gap-x-3">

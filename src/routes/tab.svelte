@@ -3,7 +3,7 @@
 
 	export let highlighted: string = '';
 
-	const tabs = ['About', 'Technology', 'Courses', 'Blog'];
+	const tabs = ['About', 'Blog'];
 </script>
 
 <div class="flex flex-row flex-wrap gap-2">

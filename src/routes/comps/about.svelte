@@ -1,8 +1,12 @@
 <div class="mt-8">
 	<p class="text-gray-500">
-		Saved by grace through faith. Writer of essays on faith and life. Developer with interests in
-		artificial intelligence, machine learning, and human computer interaction. Future doctor of
-		optometry. Peace if posssible, truth at all costs.
+		Saved by grace through faith. Writer of essays on faith and life. Future doctor of optometry.
+		Developer with interests in artificial intelligence, machine learning, and human computer
+		interaction. Building <a
+			href="https://www.learnterms.com"
+			class="text-blue-400 hover:underline"
+			target="_blank">LearnTerms.com</a
+		> to enhance student studying. Peace if posssible, truth at all costs.
 	</p>
 
 	<div class="mt-12">
