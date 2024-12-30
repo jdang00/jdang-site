@@ -1,15 +1,38 @@
-# Justin Dang Personal Site
+# sv
 
-A personal website project created by Justin A. Dang.
+Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
 
-## Tech Stack
+## Creating a project
 
-Built using SvelteKit, Tailwind, Supabase and shadcn/ui.
+If you're seeing this, you've probably already done this step. Congrats!
 
-TODO:
+```bash
+# create a new project in the current directory
+npx sv create
 
-- [x] Design backend infrastructure
-- [x] Connect website with a backend
-- [x] Build visual design language of site
-- [ ] Finish information pages
-- [ ] Implement basic blog functionality
+# create a new project in my-app
+npx sv create my-app
+```
+
+## Developing
+
+Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+
+```bash
+npm run dev
+
+# or start the server and open the app in a new browser tab
+npm run dev -- --open
+```
+
+## Building
+
+To create a production version of your app:
+
+```bash
+npm run build
+```
+
+You can preview the production build with `npm run preview`.
+
+> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
