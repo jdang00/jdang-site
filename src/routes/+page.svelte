@@ -17,8 +17,25 @@
 				<Avatar.Fallback>JD</Avatar.Fallback>
 			</Avatar.Root>
 			<div class="flex flex-col gap-y-2">
-				<h1 class="text-5xl font-medium">Justin A. Dang</h1>
-				<p>Optometry Student</p>
+				<h1 class="text-4xl font-medium">Justin A. Dang</h1>
+				<p class="text-gray-500">Optometry Student</p>
+				<div class="flex flex-row justify-center space-x-2 sm:justify-start">
+					<a
+						href="https://github.com/jdang00"
+						target="_blank"
+						class="text font-mono text-blue-500 underline hover:text-blue-400">GitHub</a
+					>
+					<a
+						href="https://www.instagram.com/justin_a_dang/"
+						target="_blank"
+						class="text font-mono text-blue-500 underline hover:text-blue-400">Instagram</a
+					>
+					<a
+						href="https://www.linkedin.com/in/justin-a-dang/"
+						target="_blank"
+						class="text font-mono text-blue-500 underline hover:text-blue-400">LinkedIn</a
+					>
+				</div>
 			</div>
 		</div>
 
@@ -36,7 +53,7 @@
 					education. That's why I'm building <a
 						href="https://www.learnterms.com"
 						target="_blank"
-						class="text-blue-500 underline">LearnTerms.com</a
+						class="text-blue-500 underline hover:text-blue-400">LearnTerms.com</a
 					> to enhance student studying.
 				</p>
 			</div>
