@@ -43,10 +43,10 @@
 			<h2 class="text-3xl font-medium">About Me</h2>
 			<div class=" mt-6 flex flex-col gap-y-2 text-start">
 				<p>
-					I'm Justin Dang, an optometry student at Northeastern State University Oklahoma College of
-					Optometry. Originally from Fort Smith Arkansas, I grew up with a strong background in the
-					humanities and the Great Books of the Western World. In college, I studied computer
-					science with artificial intelligence and human computer interaction.
+					I'm Justin Dang, an optometry student at the Northeastern State University Oklahoma
+					College of Optometry. Originally from Fort Smith Arkansas, I grew up with a strong
+					background in the humanities and the Great Books of the Western World. In college, I
+					studied computer science with artificial intelligence and human computer interaction.
 				</p>
 				<p>
 					My current interests are in using generative agents in the field of healthcare and health
