@@ -123,7 +123,7 @@
 		
 		// Reset font for content
 		doc.setFont('NotoSerif', 'normal');
-		doc.setFontSize(12);
+		doc.setFontSize(18);
 		
 		const content = summary;
 		const lineHeight = 7;
