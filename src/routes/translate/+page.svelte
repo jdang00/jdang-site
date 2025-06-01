@@ -158,149 +158,155 @@
 	}
 
 	async function generatePDF() {
-	if (!summary) return;
-	
-	pdfLoading = true;
-	try {
-		const doc = new jsPDF();
+		if (!summary) return;
 		
-		// Fetch and add the Noto Serif font
-		const fontResponse = await fetch('/NotoSerif-VariableFont_wdth,wght.ttf');
-		if (!fontResponse.ok) throw new Error('Failed to load font');
-		
-		const fontArrayBuffer = await fontResponse.arrayBuffer();
-		const fontBase64 = btoa(
-			new Uint8Array(fontArrayBuffer)
-				.reduce((data, byte) => data + String.fromCharCode(byte), '')
-		);
-		
-		doc.addFileToVFS('NotoSerif.ttf', fontBase64);
-		doc.addFont('NotoSerif.ttf', 'NotoSerif', 'normal');
-		doc.addFont('NotoSerif.ttf', 'NotoSerif', 'bold');
-		doc.setFont('NotoSerif');
-		
-		const pageWidth = doc.internal.pageSize.getWidth();
-		const pageHeight = doc.internal.pageSize.getHeight();
-		const margin = 20;
-		const contentWidth = pageWidth - (margin * 2);
-		let yPosition = margin;
-		
-		// Add title
-		doc.setFontSize(18);
-		doc.setFont('NotoSerif', 'bold');
-		const title = 'Oak Cliff Baptist Church';
-		const titleWidth = doc.getTextWidth(title);
-		doc.text(title, (pageWidth - titleWidth) / 2, yPosition);
-		yPosition += 15;
-
-		// Add subtitle
-		doc.setFontSize(14);
-		const subtitle = 'Vietnamese Translation';
-		const subtitleWidth = doc.getTextWidth(subtitle);
-		doc.text(subtitle, (pageWidth - subtitleWidth) / 2, yPosition);
-		yPosition += 15;
-
-		// Add date
-		doc.setFontSize(12);
-		const date = new Date().toLocaleDateString('en-US', { 
-			year: 'numeric', 
-			month: 'long', 
-			day: 'numeric' 
-		});
-		const dateWidth = doc.getTextWidth(date);
-		doc.text(date, (pageWidth - dateWidth) / 2, yPosition);
-		yPosition += 10;
-		
-		doc.setLineWidth(0.5);
-		doc.line(margin, yPosition, pageWidth - margin, yPosition);
-		yPosition += 15;
-		
-		// Set 18pt font - good for bifocal users while maintaining readability
-		doc.setFont('NotoSerif', 'normal');
-		doc.setFontSize(18);
-		
-		const content = summary;
-		// Line height for 18pt font (1.4x for good readability)
-		const lineHeight = 25;
-		const paragraphSpacing = 12; // Space between paragraphs
-		
-		const paragraphs = content.split('\n\n');
-		
-		for (let i = 0; i < paragraphs.length; i++) {
-			const paragraph = paragraphs[i].trim();
-			if (!paragraph) continue;
+		pdfLoading = true;
+		try {
+			const doc = new jsPDF();
 			
-			// Handle long words but keep it minimal for better flow
-			const processedParagraph = paragraph.replace(/(\S{25,})/g, (word) => {
-				if (doc.getTextWidth(word) > contentWidth * 0.9) {
-					return word.match(/.{1,20}/g)?.join('-') || word;
-				}
-				return word;
+			// Fetch and add the Noto Serif font
+			const fontResponse = await fetch('/NotoSerif-VariableFont_wdth,wght.ttf');
+			if (!fontResponse.ok) throw new Error('Failed to load font');
+			
+			const fontArrayBuffer = await fontResponse.arrayBuffer();
+			const fontBase64 = btoa(
+				new Uint8Array(fontArrayBuffer)
+					.reduce((data, byte) => data + String.fromCharCode(byte), '')
+			);
+			
+			doc.addFileToVFS('NotoSerif.ttf', fontBase64);
+			doc.addFont('NotoSerif.ttf', 'NotoSerif', 'normal');
+			doc.addFont('NotoSerif.ttf', 'NotoSerif', 'bold');
+			doc.setFont('NotoSerif');
+			
+			const pageWidth = doc.internal.pageSize.getWidth();
+			const pageHeight = doc.internal.pageSize.getHeight();
+			const margin = 20;
+			const contentWidth = pageWidth - (margin * 2);
+			let yPosition = margin;
+			
+			// Add title
+			doc.setFontSize(18);
+			doc.setFont('NotoSerif', 'bold');
+			const title = 'Oak Cliff Baptist Church';
+			const titleWidth = doc.getTextWidth(title);
+			doc.text(title, (pageWidth - titleWidth) / 2, yPosition);
+			yPosition += 15;
+
+			// Add subtitle
+			doc.setFontSize(14);
+			const subtitle = 'Vietnamese Translation';
+			const subtitleWidth = doc.getTextWidth(subtitle);
+			doc.text(subtitle, (pageWidth - subtitleWidth) / 2, yPosition);
+			yPosition += 15;
+
+			// Add date
+			doc.setFontSize(12);
+			const date = new Date().toLocaleDateString('en-US', { 
+				year: 'numeric', 
+				month: 'long', 
+				day: 'numeric' 
 			});
+			const dateWidth = doc.getTextWidth(date);
+			doc.text(date, (pageWidth - dateWidth) / 2, yPosition);
+			yPosition += 10;
 			
-			const lines = doc.splitTextToSize(processedParagraph, contentWidth);
+			doc.setLineWidth(0.5);
+			doc.line(margin, yPosition, pageWidth - margin, yPosition);
+			yPosition += 15;
 			
-			// Check if we need a new page for this paragraph
-			const requiredSpace = (lines.length * lineHeight) + paragraphSpacing;
-			const availableSpace = pageHeight - margin - 25 - yPosition; // Reserve 25 for footer
+			// Set 18pt font - good for bifocal users while maintaining readability
+			doc.setFont('NotoSerif', 'normal');
+			doc.setFontSize(18);
 			
-			if (requiredSpace > availableSpace && yPosition > margin + 50) {
-				doc.addPage();
-				yPosition = margin + 20;
-			}
+			const content = summary;
+			// Line height for 18pt font (1.4x for good readability)
+			const lineHeight = 25;
+			const paragraphSpacing = 12; // Space between paragraphs
 			
-			// Add each line of the paragraph
-			for (let j = 0; j < lines.length; j++) {
-				// Check if this line will fit on current page
-				if (yPosition + lineHeight > pageHeight - margin - 25) {
+			const paragraphs = content.split('\n\n');
+			
+			for (let i = 0; i < paragraphs.length; i++) {
+				const paragraph = paragraphs[i].trim();
+				if (!paragraph) continue;
+				
+				// Handle long words but keep it minimal for better flow
+				const processedParagraph = paragraph.replace(/(\S{25,})/g, (word) => {
+					if (doc.getTextWidth(word) > contentWidth * 0.9) {
+						return word.match(/.{1,20}/g)?.join('-') || word;
+					}
+					return word;
+				});
+				
+				const lines = doc.splitTextToSize(processedParagraph, contentWidth);
+				
+				// Check if we need a new page for this paragraph
+				const requiredSpace = (lines.length * lineHeight) + paragraphSpacing;
+				const availableSpace = pageHeight - margin - 25 - yPosition; // Reserve 25 for footer
+				
+				if (requiredSpace > availableSpace && yPosition > margin + 50) {
 					doc.addPage();
 					yPosition = margin + 20;
 				}
 				
-				// Left-align text for natural paragraph flow
-				doc.text(lines[j], margin, yPosition);
-				yPosition += lineHeight;
+				// Add each line of the paragraph
+				for (let j = 0; j < lines.length; j++) {
+					// Check if this line will fit on current page
+					if (yPosition + lineHeight > pageHeight - margin - 25) {
+						doc.addPage();
+						yPosition = margin + 20;
+					}
+					
+					// Left-align text for natural paragraph flow
+					doc.text(lines[j], margin, yPosition);
+					yPosition += lineHeight;
+				}
+				
+				// Add spacing between paragraphs (only if not at end and not near page bottom)
+				if (i < paragraphs.length - 1 && 
+					yPosition + paragraphSpacing < pageHeight - margin - 25) {
+					yPosition += paragraphSpacing;
+				}
 			}
 			
-			// Add spacing between paragraphs (only if not at end and not near page bottom)
-			if (i < paragraphs.length - 1 && 
-				yPosition + paragraphSpacing < pageHeight - margin - 25) {
-				yPosition += paragraphSpacing;
+			// Add page numbers and timestamp
+			const pageCount = doc.internal.pages.length - 1;
+			for (let i = 1; i <= pageCount; i++) {
+				doc.setPage(i);
+				doc.setFontSize(10);
+				doc.setFont('NotoSerif', 'normal');
+				
+				// Page number
+				const pageText = `Page ${i} of ${pageCount}`;
+				const pageTextWidth = doc.getTextWidth(pageText);
+				doc.text(pageText, pageWidth - pageTextWidth - margin, pageHeight - 10);
+				
+				// Timestamp on first page only
+				if (i === 1) {
+					doc.setFontSize(8);
+					const timestamp = `Generated: ${new Date().toLocaleString('en-US')}`;
+					doc.text(timestamp, margin, pageHeight - 10);
+				}
 			}
-		}
-		
-		// Add page numbers and timestamp
-		const pageCount = doc.internal.pages.length - 1;
-		for (let i = 1; i <= pageCount; i++) {
-			doc.setPage(i);
-			doc.setFontSize(10);
-			doc.setFont('NotoSerif', 'normal');
 			
-			// Page number
-			const pageText = `Page ${i} of ${pageCount}`;
-			const pageTextWidth = doc.getTextWidth(pageText);
-			doc.text(pageText, pageWidth - pageTextWidth - margin, pageHeight - 10);
+			// Instead of saving, create a blob URL and open in new tab
+			const pdfBlob = doc.output('blob');
+			const pdfUrl = URL.createObjectURL(pdfBlob);
+			window.open(pdfUrl, '_blank');
 			
-			// Timestamp on first page only
-			if (i === 1) {
-				doc.setFontSize(8);
-				const timestamp = `Generated: ${new Date().toLocaleString('en-US')}`;
-				doc.text(timestamp, margin, pageHeight - 10);
+			// Clean up the blob URL after a short delay
+			setTimeout(() => URL.revokeObjectURL(pdfUrl), 1000);
+		} catch (e: unknown) {
+			if (e instanceof Error) {
+				error = `Failed to generate PDF: ${e.message}`;
+			} else {
+				error = 'Failed to generate PDF: Unknown error';
 			}
+			console.error('PDF generation error:', e);
+		} finally {
+			pdfLoading = false;
 		}
-		
-		doc.save('translation.pdf');
-	} catch (e: unknown) {
-		if (e instanceof Error) {
-			error = `Failed to generate PDF: ${e.message}`;
-		} else {
-			error = 'Failed to generate PDF: Unknown error';
-		}
-		console.error('PDF generation error:', e);
-	} finally {
-		pdfLoading = false;
 	}
-}
 
 	// No need for onDestroy for the main EventSource here as it's handled within handleSubmit
 </script>
