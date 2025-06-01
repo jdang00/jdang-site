@@ -35,10 +35,8 @@
 						target="_blank"
 						class="text font-mono text-blue-500 underline hover:text-blue-400">LinkedIn</a
 					>
-					<a
-						href="/translate"
-					
-						class="text font-mono text-blue-500 underline hover:text-blue-400">Translate</a
+					<a href="/translate" class="text font-mono text-blue-500 underline hover:text-blue-400"
+						>Translate</a
 					>
 				</div>
 			</div>

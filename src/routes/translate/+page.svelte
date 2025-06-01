@@ -292,7 +292,12 @@
 			// Instead of saving, create a blob URL and open in new tab
 			const pdfBlob = doc.output('blob');
 			const pdfUrl = URL.createObjectURL(pdfBlob);
-			window.open(pdfUrl, '_blank');
+			const link = document.createElement('a');
+			link.href = pdfUrl;
+			link.download = 'translation.pdf';
+			document.body.appendChild(link);
+			link.click();
+			document.body.removeChild(link);
 			
 			// Clean up the blob URL after a short delay
 			setTimeout(() => URL.revokeObjectURL(pdfUrl), 1000);
@@ -326,7 +331,7 @@
 				/>
 			</div>
 			<p class="text-center text-sm text-gray-500 sm:text-left">
-				Supported formats: TXT, PDF, DOC, DOCX
+				Supported formats: PDF
 			</p>
 			<button
 				type="submit"
