@@ -36,12 +36,10 @@ export const POST: RequestHandler = async ({ request }) => {
       );
     }
 
-    // Create a TransformStream to process the SSE stream
     const { readable, writable } = new TransformStream();
     const writer = writable.getWriter();
     const encoder = new TextEncoder();
 
-    // Process the stream
     const reader = geminiRes.body?.getReader();
     if (!reader) {
       return new Response(
@@ -50,7 +48,6 @@ export const POST: RequestHandler = async ({ request }) => {
       );
     }
 
-    // Start processing the stream with proper JSON accumulation
     (async () => {
       const decoder = new TextDecoder();
       let jsonBuffer = '';
@@ -61,20 +58,15 @@ export const POST: RequestHandler = async ({ request }) => {
         while (true) {
           const { done, value } = await reader.read();
           if (done) {
-            // Process any remaining complete JSON in buffer
             if (jsonBuffer.trim() && braceCount === 0) {
               await processCompleteJson(jsonBuffer.trim());
             }
-            // Send completion signal
             await writer.write(encoder.encode(`data: {"done": true}\n\n`));
             break;
           }
 
-          // Add new chunk to buffer
           const chunk = decoder.decode(value, { stream: true });
-          console.log('Raw chunk:', chunk.substring(0, 100));
           
-          // Process character by character to find complete JSON objects
           for (const char of chunk) {
             if (char === '{') {
               if (!inJsonObject) {
@@ -88,7 +80,6 @@ export const POST: RequestHandler = async ({ request }) => {
                 braceCount--;
                 jsonBuffer += char;
                 
-                // Complete JSON object found
                 if (braceCount === 0) {
                   await processCompleteJson(jsonBuffer.trim());
                   jsonBuffer = '';
@@ -98,11 +89,10 @@ export const POST: RequestHandler = async ({ request }) => {
             } else if (inJsonObject) {
               jsonBuffer += char;
             }
-            // Ignore characters outside of JSON objects
           }
         }
-      } catch (e) {
-        console.error('Stream processing error:', e);
+      } catch (error) {
+        console.error('Stream processing error:', error);
         await writer.write(
           encoder.encode(`data: {"error": "Stream processing failed"}\n\n`)
         );
@@ -112,22 +102,16 @@ export const POST: RequestHandler = async ({ request }) => {
 
       async function processCompleteJson(jsonStr: string) {
         try {
-          console.log('Processing complete JSON:', jsonStr.substring(0, 200));
           const parsed = JSON.parse(jsonStr);
-          
-          // Extract text from Gemini's response structure
           const text = parsed.candidates?.[0]?.content?.parts?.[0]?.text || '';
           
           if (text) {
-            console.log('Extracted text:', text.substring(0, 50) + '...');
             await writer.write(
               encoder.encode(`data: ${JSON.stringify({ text })}\n\n`)
             );
-          } else {
-            console.log('No text found in response:', parsed);
           }
-        } catch (e) {
-          console.error('Error parsing complete JSON:', e, 'JSON:', jsonStr.substring(0, 200));
+        } catch (error) {
+          console.error('Error parsing complete JSON:', error, 'JSON:', jsonStr.substring(0, 200));
         }
       }
     })();
@@ -141,10 +125,11 @@ export const POST: RequestHandler = async ({ request }) => {
         'Access-Control-Allow-Headers': 'Content-Type'
       }
     });
-  } catch (e: any) {
-    console.error('API error:', e);
+  } catch (error: unknown) {
+    console.error('API error:', error);
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
     return new Response(
-      JSON.stringify({ error: 'Server error', details: e.message }), 
+      JSON.stringify({ error: 'Server error', details: errorMessage }), 
       { status: 500 }
     );
   }

@@ -81,15 +81,13 @@
 				return;
 			}
 
-			// Improved stream processing with proper buffering
 			const reader = res.body.getReader();
 			const decoder = new TextDecoder();
-			let buffer = ''; // Buffer for incomplete messages
+			let buffer = '';
 
 			while (true) {
 				const { done, value } = await reader.read();
 				if (done) {
-					// Process any remaining data in buffer
 					if (buffer.trim()) {
 						processSSEData(buffer);
 					}
@@ -97,22 +95,16 @@
 					break;
 				}
 
-				// Decode the chunk and add to buffer
 				const chunk = decoder.decode(value, { stream: true });
 				buffer += chunk;
 
-				// Safety check for buffer size
 				if (buffer.length > MAX_BUFFER_SIZE) {
 					throw new Error('Buffer size exceeded maximum limit');
 				}
 
-				// Process complete SSE messages
 				const messages = buffer.split('\n\n');
-				
-				// Keep the last (potentially incomplete) message in buffer
 				buffer = messages.pop() || '';
 				
-				// Process complete messages
 				for (const message of messages) {
 					if (message.trim()) {
 						processSSEData(message);
@@ -133,7 +125,6 @@
 		}
 	}
 
-	// Helper function to process SSE data
 	function processSSEData(message: string) {
 		const lines = message.split('\n');
 		for (const line of lines) {
