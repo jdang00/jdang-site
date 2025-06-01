@@ -17,6 +17,7 @@
 		"@sveltejs/adapter-vercel": "^5.5.0",
 		"@sveltejs/kit": "^2.0.0",
 		"@sveltejs/vite-plugin-svelte": "^4.0.0",
+		"@types/pdfmake": "^0.2.11",
 		"autoprefixer": "^10.4.20",
 		"bits-ui": "^0.22.0",
 		"clsx": "^2.1.1",
@@ -41,6 +42,7 @@
 	"dependencies": {
 		"@fontsource-variable/noto-serif": "^5.1.1",
 		"@fontsource-variable/rubik": "^5.1.1",
-		"@tailwindcss/typography": "^0.5.15"
+		"@tailwindcss/typography": "^0.5.15",
+		"jspdf": "^3.0.1"
 	}
 }
