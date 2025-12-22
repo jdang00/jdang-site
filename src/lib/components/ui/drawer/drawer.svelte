@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { Drawer as DrawerPrimitive } from "vaul-svelte";
+	import { browser } from "$app/environment";
 	import { onDestroy } from "svelte";
 
 	let {
@@ -9,9 +10,9 @@
 		...restProps
 	}: DrawerPrimitive.RootProps = $props();
 
-	// Ensure scroll is always restored when drawer closes
+	// Ensure scroll is always restored when drawer closes (client-side only)
 	$effect(() => {
-		if (!open) {
+		if (browser && !open) {
 			// Small delay to ensure cleanup happens after drawer animation
 			setTimeout(() => {
 				document.body.style.overflow = '';
@@ -20,10 +21,12 @@
 		}
 	});
 
-	// Cleanup on component unmount
+	// Cleanup on component unmount (client-side only)
 	onDestroy(() => {
-		document.body.style.overflow = '';
-		document.body.style.pointerEvents = '';
+		if (browser) {
+			document.body.style.overflow = '';
+			document.body.style.pointerEvents = '';
+		}
 	});
 </script>
 
