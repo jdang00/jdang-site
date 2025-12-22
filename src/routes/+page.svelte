@@ -107,7 +107,7 @@
 					class="size-32 rounded-full bg-muted/30 shadow-md ring-1 ring-border sm:size-40 md:size-48 lg:size-56"
 				>
 					<Avatar.Image
-						src="https://9g74ko9d91.ufs.sh/f/NeU6e1Cs56VtMnwqrV5r8ENsP4ivB3m6AOJZueSgj10RW7DI"
+						src="https://9g74ko9d91.ufs.sh/f/NeU6e1Cs56VtaCGFzB8i7eavAH56VknjNhUmWYgLzFQZRw4M"
 						alt="Portrait of Justin Dang"
 						class="object-cover"
 					/>
