@@ -1,64 +1,68 @@
 <script lang="ts">
-	import { fade, fly } from 'svelte/transition';
-	import { quintOut } from 'svelte/easing';
+	import { ArrowRight } from 'lucide-svelte';
+	import { fly } from 'svelte/transition';
+	import { deckLibrary } from '$lib/decks/registry';
 
-	const items = [
-		{
-			title: 'Decks Subdomain',
-			description:
-				'This page is served from the same SvelteKit app and is intended to be reached through decks.justindang.dev.'
-		},
-		{
-			title: 'Routing Check',
-			description:
-				'If you can load this page from the subdomain after attaching the domain in Vercel, the host-based rewrite is working.'
-		},
-		{
-			title: 'Next Step',
-			description:
-				'Replace this placeholder page with your actual decks experience once the domain wiring is verified.'
-		}
-	];
+	const totalSlides = deckLibrary.reduce((count, deck) => count + deck.slides, 0);
 </script>
 
 <svelte:head>
 	<title>Decks | Justin A. Dang</title>
-	<meta
-		name="description"
-		content="Decks landing page served from the justindang.dev SvelteKit app."
-	/>
+	<meta name="description" content="Presentations built with Animotion and Svelte." />
 </svelte:head>
 
-<section class="relative overflow-hidden bg-background py-16 sm:py-20" in:fade={{ duration: 200 }}>
-	<div
-		class="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-muted/60 to-transparent"
-		aria-hidden="true"
-	></div>
-
-	<div class="container relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-		<div class="max-w-3xl" in:fly={{ y: 18, duration: 300, easing: quintOut }}>
-			<p class="font-display text-sm uppercase tracking-[0.28em] text-muted-foreground">
-				decks.justindang.dev
+<section class="min-h-screen bg-background py-10 sm:py-14">
+	<div class="mx-auto max-w-3xl px-4 sm:px-6">
+		<header class="mb-10 max-w-2xl">
+			<p class="font-mono text-xs text-muted-foreground">~/decks</p>
+			<h1 class="mt-2 text-2xl font-medium tracking-tight text-foreground">Decks</h1>
+			<p class="mt-1 text-sm text-muted-foreground">
+				{deckLibrary.length} presentations
 			</p>
-			<h1 class="mt-4 text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
-				Decks
-			</h1>
-			<p class="mt-5 text-lg leading-8 text-muted-foreground sm:text-xl">
-				A dedicated subdomain routed through the main site on Vercel. This page exists so you can
-				verify the domain setup before building out the actual content.
-			</p>
-		</div>
+		</header>
 
-		<div class="mt-12 grid gap-4 sm:grid-cols-3">
-			{#each items as item, i}
-				<div
-					class="rounded-2xl border border-border bg-card p-6 shadow-sm"
-					in:fly={{ y: 20, duration: 280, delay: 80 + i * 70, easing: quintOut }}
+		<div class="border-t border-border">
+			{#each deckLibrary as deck, i}
+				<a
+					href={`/decks/${deck.slug}`}
+					in:fly={{ y: 16, duration: 320, delay: 80 + i * 55, opacity: 0.15 }}
+					class="group flex items-center gap-4 border-b border-border/50 py-4 transition-colors hover:bg-muted/40 sm:-mx-3 sm:rounded-md sm:border-none sm:px-3"
 				>
-					<h2 class="text-lg font-medium text-card-foreground">{item.title}</h2>
-					<p class="mt-3 text-sm leading-6 text-muted-foreground">{item.description}</p>
-				</div>
+					<div
+						class="mt-1 size-2.5 shrink-0 rounded-full sm:mt-0"
+						style="background-color: {deck.accent};"
+					></div>
+
+					<div class="min-w-0 flex-1">
+						<div class="flex items-baseline gap-3">
+							<p class="font-medium text-foreground">{deck.title}</p>
+							<span class="hidden font-mono text-xs text-muted-foreground/50 sm:inline">
+								{deck.slides} slides
+							</span>
+						</div>
+						<p class="mt-0.5 font-mono text-xs text-muted-foreground">{deck.slug}</p>
+					</div>
+
+					<div class="hidden items-center gap-1.5 lg:flex">
+						{#each deck.tags.slice(0, 2) as tag}
+							<span
+								class="rounded border px-1.5 py-0.5 font-mono text-[10px]"
+								style="border-color: {deck.accent}25; color: {deck.accent}; background-color: {deck.accent}08;"
+							>
+								{tag}
+							</span>
+						{/each}
+
+						<ArrowRight
+							class="size-4 shrink-0 text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100"
+						/>
+					</div>
+				</a>
 			{/each}
 		</div>
+
+		<footer class="mt-6 font-mono text-xs text-muted-foreground/70">
+			{deckLibrary.length} decks · {totalSlides} slides · animotion + svelte
+		</footer>
 	</div>
 </section>

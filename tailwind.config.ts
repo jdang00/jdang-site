@@ -67,8 +67,9 @@ const config: Config = {
 				sm: 'calc(var(--radius) - 4px)'
 			},
 			fontFamily: {
-				sans: [...fontFamily.sans],
-				display: ['Optician Sans', ...fontFamily.sans]
+				sans: ['Geist Sans', ...fontFamily.sans],
+				mono: ['Geist Mono', ...fontFamily.mono],
+				display: ['Geist Sans', ...fontFamily.sans]
 			},
 			keyframes: {
 				'accordion-down': {

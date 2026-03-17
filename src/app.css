@@ -1,21 +1,22 @@
-@import '@fontsource-variable/noto-serif';
+@import '@fontsource/geist-sans/400.css';
+@import '@fontsource/geist-sans/500.css';
+@import '@fontsource/geist-sans/600.css';
+@import '@fontsource/geist-sans/700.css';
+@import '@fontsource/geist-mono/400.css';
+@import '@fontsource/geist-mono/500.css';
+@import '@fontsource/geist-mono/600.css';
+@import '@fontsource/geist-mono/700.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-	font-family: 'Optician Sans';
-	font-style: normal;
-	font-display: swap;
-	src: url('/Optician-Sans.woff2') format('woff2');
-}
-
 @theme {
-	--font-display: 'Optician Sans', sans-serif;
+	--font-display: 'Geist Mono', monospace;
 }
 
 @layer base {
 	:root {
+		color-scheme: light;
 		--background: 0 0% 100%;
 		--foreground: 222.2 84% 4.9%;
 		--muted: 210 40% 96.1%;
@@ -47,6 +48,7 @@
 	}
 
 	.dark {
+		color-scheme: dark;
 		--background: 0 0% 1%;
 		--foreground: 0 0% 98%;
 		--muted: 0 0% 4%;
@@ -78,14 +80,25 @@
 }
 
 @layer base {
-	body {
-		@apply bg-background text-foreground;
+	html {
+		@apply bg-background;
 	}
-	h1,
-	* {
+
+	*,
+	::before,
+	::after {
 		@apply border-border;
 	}
+
 	body {
-		@apply bg-background text-foreground;
+		@apply bg-background font-sans text-foreground antialiased;
+	}
+
+	code,
+	kbd,
+	pre,
+	samp {
+		font-family: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+			'Liberation Mono', 'Courier New', monospace;
 	}
 }

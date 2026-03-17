@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx svelte-check:*)",
+      "Bash(npx vite:*)",
+      "WebFetch(domain:animotion.pages.dev)",
+      "Bash(npx css-beautify:*)"
+    ]
+  }
+}
