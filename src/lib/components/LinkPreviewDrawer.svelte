@@ -23,10 +23,8 @@
 		linkUrl,
 		linkText = 'Visit Link',
 		trigger,
-		open = false
+		open = $bindable(false)
 	}: Props = $props();
-
-	let isOpen = $state(open);
 
 	const handleVisitLink = () => {
 		window.open(linkUrl, '_blank', 'noopener,noreferrer');
@@ -41,7 +39,7 @@
 	};
 </script>
 
-<Drawer.Root bind:open={isOpen}>
+<Drawer.Root bind:open>
 	{#if trigger}
 		<Drawer.Trigger>
 			{@render trigger()}
@@ -57,7 +55,7 @@
 					</Drawer.Title>
 					<Drawer.Close>
 						<button
-							class="inline-flex h-8 w-8 items-center justify-center rounded-md bg-transparent p-0 text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+							class="inline-flex h-8 w-8 items-center justify-center rounded-md bg-transparent p-0 text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus:outline-hidden focus:ring-2 focus:ring-ring focus:ring-offset-2"
 						>
 							<X class="h-4 w-4" />
 							<span class="sr-only">Close</span>
@@ -69,7 +67,7 @@
 			<div class="px-6 pb-8">
 				<div class="flex flex-col gap-6 md:flex-row md:gap-8">
 					{#if imageUrl}
-						<div class="flex-shrink-0 md:w-80">
+						<div class="shrink-0 md:w-80">
 							<div class="aspect-video overflow-hidden rounded-lg bg-muted/10 shadow-lg">
 								<img
 									src={imageUrl}

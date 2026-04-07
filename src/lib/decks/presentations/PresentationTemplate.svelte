@@ -75,7 +75,7 @@
 		</ul>
 		<Transition order={4}>
 			<div
-				class="flex aspect-[4/3] w-full items-center justify-center rounded bg-slate-100 text-[1.1rem] text-slate-300"
+				class="flex aspect-4/3 w-full items-center justify-center rounded bg-slate-100 text-[1.1rem] text-slate-300"
 			>
 				image
 			</div>
@@ -93,7 +93,7 @@
 	</Transition>
 	<Transition order={1}>
 		<div
-			class="flex aspect-[4/3] w-full items-center justify-center rounded bg-slate-100 text-[1.1rem] text-slate-300"
+			class="flex aspect-4/3 w-full items-center justify-center rounded bg-slate-100 text-[1.1rem] text-slate-300"
 		>
 			image
 		</div>
@@ -175,7 +175,7 @@
 </Slide>
 
 <!-- 13 · Photo (full bleed) -->
-<Slide class="!p-0 grid content-center place-items-center bg-slate-100">
+<Slide class="p-0! grid content-center place-items-center bg-slate-100">
 	<p class="text-[1.1rem] text-slate-300">image</p>
 </Slide>
 

@@ -39,7 +39,7 @@
 	>
 		<a
 			href={`/decks/${data.deck.slug}`}
-			class="inline-flex items-center gap-2 rounded-md border border-white/10 bg-slate-900/80 px-3 py-1.5 font-mono text-xs text-white/70 backdrop-blur transition hover:border-white/20 hover:text-white"
+			class="inline-flex items-center gap-2 rounded-md border border-white/10 bg-slate-900/80 px-3 py-1.5 font-mono text-xs text-white/70 backdrop-blur-sm transition hover:border-white/20 hover:text-white"
 		>
 			<ArrowLeft class="size-3" />
 			esc

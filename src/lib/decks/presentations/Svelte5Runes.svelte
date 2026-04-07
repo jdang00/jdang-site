@@ -292,7 +292,7 @@ let { value = $bindable('') }: Props = $props();
 <!-- Slide 8: Closing -->
 <Slide class="place-content-center">
 	<div
-		class="mx-auto flex h-full max-w-5xl flex-col justify-center rounded-2xl bg-gradient-to-br from-orange-500 via-orange-400 to-amber-300 p-10 text-center text-white"
+		class="mx-auto flex h-full max-w-5xl flex-col justify-center rounded-2xl bg-linear-to-br from-orange-500 via-orange-400 to-amber-300 p-10 text-center text-white"
 	>
 		<p class="text-sm uppercase tracking-[0.3em] text-white/70">Takeaway</p>
 		<h2 class="mt-4 text-6xl text-white">Explicit beats magic.</h2>
