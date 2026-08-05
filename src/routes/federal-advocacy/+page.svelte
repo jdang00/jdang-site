@@ -135,10 +135,5 @@
 				your FAR to learn more about state and federal advocacy.
 			</p>
 		</div>
-
-		<footer class="mt-14 text-sm text-muted-foreground">
-			Draft for committee review — written for the Trustee Report, to be sent to the communications
-			team.
-		</footer>
 	</article>
 </div>

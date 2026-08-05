@@ -11,7 +11,7 @@
 	} from '$lib/parking-demand';
 
 	type Assignment = 'Students' | 'Faculty/staff' | 'ADA / unallocated';
-	type AllocationMode = 'current' | 'proposed';
+	type AllocationMode = 'current' | 'proposed' | 'adopted';
 	type ViewMode = AllocationMode | 'compare';
 
 	type ParkingRegion = {
@@ -20,6 +20,8 @@
 		spaces: number;
 		current: Assignment;
 		proposed: Assignment;
+		/** What the college actually implemented after the 18 May 2026 decision. */
+		adopted: Assignment;
 		x: number;
 		y: number;
 		points: string;
@@ -32,6 +34,7 @@
 			spaces: 14,
 			current: 'Students',
 			proposed: 'Faculty/staff',
+			adopted: 'Students',
 			x: 656,
 			y: 258,
 			points: '656,258 1102,260 1100,332 656,330'
@@ -42,6 +45,7 @@
 			spaces: 22,
 			current: 'Faculty/staff',
 			proposed: 'Students',
+			adopted: 'Students',
 			x: 628,
 			y: 422,
 			points: '628,422 986,422 986,578 628,578'
@@ -52,6 +56,7 @@
 			spaces: 18,
 			current: 'Students',
 			proposed: 'Students',
+			adopted: 'Students',
 			x: 518,
 			y: 626,
 			points: '518,626 1092,627 1090,732 520,732'
@@ -62,6 +67,7 @@
 			spaces: 9,
 			current: 'Students',
 			proposed: 'Students',
+			adopted: 'Students',
 			x: 430,
 			y: 348,
 			points: '430,348 505,353 503,614 428,612'
@@ -72,6 +78,7 @@
 			spaces: 7,
 			current: 'ADA / unallocated',
 			proposed: 'ADA / unallocated',
+			adopted: 'ADA / unallocated',
 			x: 1394,
 			y: 276,
 			points: '1394,276 1714,276 1714,368 1395,368'
@@ -82,6 +89,7 @@
 			spaces: 16,
 			current: 'Faculty/staff',
 			proposed: 'Faculty/staff',
+			adopted: 'Faculty/staff',
 			x: 1400,
 			y: 446,
 			points: '1400,446 1706,450 1704,604 1400,602'
@@ -92,6 +100,7 @@
 			spaces: 15,
 			current: 'Students',
 			proposed: 'Students',
+			adopted: 'Faculty/staff',
 			x: 1304,
 			y: 622,
 			points: '1304,622 1782,624 1780,742 1306,740'
@@ -107,6 +116,7 @@
 	const modes: { id: ViewMode; label: string }[] = [
 		{ id: 'current', label: 'Current' },
 		{ id: 'proposed', label: 'Proposed' },
+		{ id: 'adopted', label: 'Adopted' },
 		{ id: 'compare', label: 'Compare' }
 	];
 
@@ -127,14 +137,17 @@
 
 	$effect(() => {
 		const param = page.url.searchParams.get('mode');
-		if (param === 'proposed' || param === 'compare') {
+		if (param === 'proposed' || param === 'adopted' || param === 'compare') {
 			view = param;
 		}
 	});
 
 	const activeRegion = $derived(regions.find((region) => region.id === activeId));
 	const activeChanged = $derived(
-		activeRegion ? activeRegion.current !== activeRegion.proposed : false
+		activeRegion
+			? activeRegion.current !== activeRegion.proposed ||
+				activeRegion.current !== activeRegion.adopted
+			: false
 	);
 	const activeCurrentColors = $derived(
 		activeRegion ? allocationColors[activeRegion.current] : undefined
@@ -142,9 +155,13 @@
 	const activeProposedColors = $derived(
 		activeRegion ? allocationColors[activeRegion.proposed] : undefined
 	);
+	const activeAdoptedColors = $derived(
+		activeRegion ? allocationColors[activeRegion.adopted] : undefined
+	);
 	const totals = $derived.by(() => ({
 		current: countAssignments('current'),
-		proposed: countAssignments('proposed')
+		proposed: countAssignments('proposed'),
+		adopted: countAssignments('adopted')
 	}));
 	const peakDemand = $derived.by(() =>
 		parkingDemand.reduce((peak, point) => (point.totalMax > peak.totalMax ? point : peak), parkingDemand[0])
@@ -423,10 +440,10 @@
 </script>
 
 <svelte:head>
-	<title>Parking Plan</title>
+	<title>Parking Allocation · NSUOCO south lot proposal, May 2026</title>
 	<meta
 		name="description"
-		content="Interactive parking plan with hoverable and highlightable parking regions."
+		content="A student proposal to rebalance 101 parking spaces at NSUOCO, submitted May 2026, with an interactive lot map and a note on what the college actually adopted."
 	/>
 </svelte:head>
 
@@ -434,7 +451,9 @@
 	<figure class="map-frame" class:tall={view !== 'compare'}>
 		{#if label}
 			<figcaption class="map-caption">
-				<span class="caption-mark">{mode === 'current' ? '01' : '02'}</span>
+				<span class="caption-mark">
+					{mode === 'current' ? '01' : mode === 'proposed' ? '02' : '03'}
+				</span>
 				<span class="caption-label">{label}</span>
 			</figcaption>
 		{/if}
@@ -489,6 +508,10 @@
 
 <div class:embed-shell={isEmbed} class:page-shell={!isEmbed}>
 	{#if !isEmbed}
+		<nav class="page-nav">
+			<a href="/" class="home-link">← Justin Dang</a>
+		</nav>
+
 		<header class="parking-header">
 			<div class="title-block">
 				<p class="eyebrow">
@@ -497,41 +520,98 @@
 				</p>
 				<h1>Parking Allocation</h1>
 				<p class="subtitle">
-					Interactive lot map. Hover any region to inspect its proposed reassignment.
+					A student proposal to rebalance 101 spaces at the optometry building, and what the
+					college decided instead.
+				</p>
+				<p class="credit">
+					Kaitlyn Hargreaves and Justin Dang, NSUOCO Class of 2028. Data and statistical
+					analysis by Justin Dang.
 				</p>
 			</div>
-			<div class="header-tools">
-				<div class="mode-control" aria-label="Allocation view">
-					{#each modes as option}
-						<button
-							class:active={view === option.id}
-							type="button"
-							aria-pressed={view === option.id}
-							onclick={() => {
-								view = option.id;
-							}}
-						>
-							{option.label}
-						</button>
-					{/each}
-				</div>
-				{#if view === 'compare'}
-					<button
-						class="embed-button ghost"
-						type="button"
-						onclick={exportCompare}
-						disabled={exporting}
-					>
-						<span class="key-glyph">↓</span>
-						{exporting ? 'Rendering…' : 'Export PNG'}
-					</button>
-				{/if}
-				<button class="embed-button" type="button" onclick={copyEmbed}>
-					<span class="key-glyph">{'</>'}</span>
-					{copied ? 'Copied' : 'Copy embed'}
-				</button>
-			</div>
 		</header>
+
+		<section class="story">
+			<p>
+				By early 2026 the parking at the optometry building had become a running joke. The
+				signs took more than half a year to go up, and once they finally did, campus parking
+				began writing citations the next morning — which meant that wherever you had been
+				leaving your car for the last two semesters was suddenly the wrong place to leave it.
+			</p>
+			<p>
+				The complaint underneath the joke was more specific. Students arrive in waves. A
+				cohort is twenty-eight people, and the schedule regularly puts two or three cohorts in
+				the building at once, so demand spikes to somewhere between fifty-six and eighty-four
+				cars during overlapping class, lab, and clinic blocks. Faculty and staff arrive more
+				evenly, and many of them are at CNOHC, at satellite clinics, or off campus entirely on
+				any given day. The lot didn't reflect that difference. During the busiest blocks you
+				could stand in the west lot and see student parking completely full while the reserved
+				middle section sat three-quarters empty.
+			</p>
+			<p>
+				So Kaity Hargreaves and I wrote it up. We pulled the spring class schedule, counted
+				which cohorts were in the building during which blocks, added the students assigned to
+				NSU clinic, and left out the CNOHC, off-site, and duty-doctor assignments that don't
+				put a car in the south lot. The proposal that came out of it was deliberately small:
+				swap the west lot's fourteen-space north row for its twenty-two-space middle section.
+				A net movement of eight spaces toward students, no new spaces, no change to ADA, the
+				same hundred and one spaces as before. It doesn't fix the shortage — students would
+				still be about forty-eight cars short if everyone showed up at once — it just puts the
+				reserved capacity where the demand actually is. We sent it to the deans on 2 May 2026.
+			</p>
+			<p>
+				What came back on 18 May was not what we asked for. The college rearranged the south
+				side differently: the upper portion nearest the Alumni building became Faculty/Staff
+				only, and the lower section between the auditorium and the pickleball courts became
+				all Student parking. Seven Student/Commuter spaces on the north clinic side moved the
+				other way, to Faculty/Staff. Our second request — student badge access on the north
+				side, so anyone pushed to the overflow lot wouldn't have to walk the long way around
+				the building — turned out to already exist through the stairwell side door.
+			</p>
+			<p>
+				It wasn't the trade we drew, and it was a fair one. Both sides got something they
+				could live with, which is a better outcome than most parking arguments earn. Ours
+				would have put sixty-four spaces with students; the adopted split put sixty-three
+				there, and drew a cleaner line — students to the west, faculty and staff to the east.
+			</p>
+			<p>
+				The map below carries all three states. <b>Current</b> is how the lot was marked
+				before any of this, <b>Proposed</b> is what we submitted on 2 May, and
+				<b>Adopted</b> is what the college implemented. Hover any region to see what it was,
+				what we asked it to become, and where it actually landed.
+			</p>
+		</section>
+
+		<div class="header-tools">
+			<div class="mode-control" aria-label="Allocation view">
+				{#each modes as option}
+					<button
+						class:active={view === option.id}
+						type="button"
+						aria-pressed={view === option.id}
+						onclick={() => {
+							view = option.id;
+						}}
+					>
+						{option.label}
+					</button>
+				{/each}
+			</div>
+			{#if view === 'compare'}
+				<button
+					class="embed-button ghost"
+					type="button"
+					onclick={exportCompare}
+					disabled={exporting}
+				>
+					<span class="key-glyph">↓</span>
+					{exporting ? 'Rendering…' : 'Export PNG'}
+				</button>
+			{/if}
+			<button class="embed-button" type="button" onclick={copyEmbed}>
+				<span class="key-glyph">{'</>'}</span>
+				{copied ? 'Copied' : 'Copy embed'}
+			</button>
+		</div>
 	{/if}
 
 	{#if isEmbed}
@@ -557,6 +637,7 @@
 				<div class="compare-grid">
 					{@render mapView('current', 'Current')}
 					{@render mapView('proposed', 'Proposed')}
+					{@render mapView('adopted', 'Adopted')}
 				</div>
 			{:else}
 				{@render mapView(effectiveMode(view), null)}
@@ -584,7 +665,7 @@
 								</button>
 							{/if}
 						</strong>
-						{#if activeChanged}
+						{#if activeChanged && activeAdoptedColors}
 							<div class="comparison">
 								<div
 									class="chip"
@@ -600,6 +681,14 @@
 								>
 									<small>Proposed</small>
 									<b>{activeRegion.proposed}</b>
+								</div>
+								<i aria-hidden="true">→</i>
+								<div
+									class="chip is-adopted"
+									style={`--chip-fill:${activeAdoptedColors.fill};--chip-stroke:${activeAdoptedColors.stroke};`}
+								>
+									<small>Adopted</small>
+									<b>{activeRegion.adopted}</b>
 								</div>
 							</div>
 						{:else}
@@ -625,7 +714,7 @@
 		{#if !isEmbed}
 			<aside class="legend" aria-label="Parking legend">
 				<div class="summary">
-					<p>Totals · current → proposed</p>
+					<p>Totals · current → proposed → adopted</p>
 					<dl>
 						<div class="row">
 							<dt><span class="dot students"></span>Students</dt>
@@ -633,6 +722,8 @@
 								<span class="num">{totals.current.Students}</span>
 								<span class="arrow">→</span>
 								<span class="num to">{totals.proposed.Students}</span>
+								<span class="arrow">→</span>
+								<span class="num final">{totals.adopted.Students}</span>
 							</dd>
 						</div>
 						<div class="row">
@@ -641,6 +732,8 @@
 								<span class="num">{totals.current['Faculty/staff']}</span>
 								<span class="arrow">→</span>
 								<span class="num to">{totals.proposed['Faculty/staff']}</span>
+								<span class="arrow">→</span>
+								<span class="num final">{totals.adopted['Faculty/staff']}</span>
 							</dd>
 						</div>
 						<div class="row">
@@ -649,6 +742,8 @@
 								<span class="num">{totals.current['ADA / unallocated']}</span>
 								<span class="arrow">→</span>
 								<span class="num to">{totals.proposed['ADA / unallocated']}</span>
+								<span class="arrow">→</span>
+								<span class="num final">{totals.adopted['ADA / unallocated']}</span>
 							</dd>
 						</div>
 					</dl>
@@ -1134,12 +1229,18 @@
 				</p>
 			</div>
 		</details>
+
+		<footer class="page-foot">
+			<a href="/" class="home-link">← Back to Justin Dang</a>
+		</footer>
 	{/if}
 
 </div>
 
 <style>
 	.page-shell {
+		/* Reading measure for the article column; the map stage deliberately breaks out wider. */
+		--measure: 68ch;
 		min-height: 100vh;
 		padding: clamp(18px, 3vw, 42px);
 		background:
@@ -1158,27 +1259,54 @@
 		position: relative;
 	}
 
-	.parking-header {
-		display: flex;
-		align-items: end;
-		justify-content: space-between;
-		gap: 28px;
-		flex-wrap: wrap;
-		margin: 0 auto 22px;
+	.page-nav {
+		margin: 0 auto 26px;
+		max-width: var(--measure);
+	}
+
+	.page-foot {
+		margin: 40px auto 0;
 		max-width: 1220px;
-		padding-bottom: 18px;
+		padding-top: 20px;
+		border-top: 1px dashed rgba(23, 32, 24, 0.22);
+	}
+
+	.home-link {
+		display: inline-block;
+		font: 500 0.8rem/1 'Geist Mono', ui-monospace, monospace;
+		color: #4d5a4b;
+		text-decoration: none;
+		border-bottom: 1px solid rgba(23, 32, 24, 0.24);
+		padding-bottom: 3px;
+		transition: color 140ms ease, border-color 140ms ease;
+	}
+
+	.home-link:hover {
+		color: #172018;
+		border-bottom-color: #48a837;
+	}
+
+	.parking-header {
+		margin: 0 auto 30px;
+		max-width: var(--measure);
+		padding-bottom: 22px;
 		border-bottom: 1px dashed rgba(23, 32, 24, 0.22);
 	}
 
 	.title-block {
-		min-width: 280px;
+		min-width: 0;
 	}
 
+	/* Sits on its own row directly above the map, so it aligns to the stage rather than the text. */
 	.header-tools {
 		display: flex;
 		align-items: center;
 		gap: 10px;
 		flex-wrap: wrap;
+		max-width: 1220px;
+		margin: 0 auto 14px;
+		padding-top: 18px;
+		border-top: 1px dashed rgba(23, 32, 24, 0.22);
 	}
 
 	.eyebrow {
@@ -1215,6 +1343,39 @@
 		font-size: 0.92rem;
 		line-height: 1.4;
 		color: #4d5a4b;
+	}
+
+	.credit {
+		margin: 16px 0 0;
+		padding-top: 12px;
+		border-top: 1px solid rgba(23, 32, 24, 0.14);
+		font: 400 0.74rem/1.6 'Geist Mono', ui-monospace, monospace;
+		color: #5f6b5d;
+	}
+
+	/* Narrative preamble: a centered reading column above the full-width interactive stage. */
+	.story {
+		margin: 0 auto 40px;
+		max-width: var(--measure);
+	}
+
+	.story p {
+		margin: 0 0 1.15em;
+		font-size: 1.02rem;
+		line-height: 1.7;
+		color: #2f3a2e;
+		text-wrap: pretty;
+	}
+
+	/* Lead paragraph carries a touch more weight, the way a standfirst does in print. */
+	.story p:first-child {
+		font-size: 1.14rem;
+		line-height: 1.6;
+		color: #232d22;
+	}
+
+	.story p:last-child {
+		margin-bottom: 0;
 	}
 
 	.embed-button {
@@ -1260,7 +1421,9 @@
 
 	.mode-control {
 		display: inline-grid;
-		grid-template-columns: repeat(3, minmax(72px, auto));
+		/* Auto-flow so the control tracks the number of modes instead of a hardcoded count. */
+		grid-auto-flow: column;
+		grid-auto-columns: minmax(72px, auto);
 		gap: 0;
 		border: 1px solid rgba(23, 32, 24, 0.28);
 		border-radius: 7px;
@@ -1327,7 +1490,7 @@
 
 	.compare-grid {
 		display: grid;
-		grid-template-columns: repeat(2, minmax(0, 1fr));
+		grid-template-columns: repeat(3, minmax(0, 1fr));
 		gap: 14px;
 	}
 
@@ -1535,10 +1698,15 @@
 
 	.comparison {
 		display: grid;
-		grid-template-columns: 1fr auto 1fr;
+		grid-template-columns: 1fr auto 1fr auto 1fr;
 		align-items: stretch;
 		gap: 8px;
-		max-width: 460px;
+		max-width: 660px;
+	}
+
+	/* The state that actually stands, marked so it doesn't read as just the last step. */
+	.comparison .chip.is-adopted {
+		box-shadow: 0 0 0 1.5px rgba(72, 168, 55, 0.35);
 	}
 
 	.comparison .chip {
@@ -1719,6 +1887,15 @@
 
 	.summary dd .num.to {
 		color: #1d4f12;
+	}
+
+	/* The adopted figure is the one that actually stands; give it the most weight. */
+	.summary dd .num.final {
+		color: #172018;
+		text-decoration: underline;
+		text-decoration-color: #48a837;
+		text-decoration-thickness: 2px;
+		text-underline-offset: 3px;
 	}
 
 	.summary dd .arrow {
@@ -2649,11 +2826,6 @@
 	}
 
 	@media (max-width: 920px) {
-		.parking-header {
-			align-items: start;
-			flex-direction: column;
-		}
-
 		.header-tools {
 			width: 100%;
 		}
@@ -2668,6 +2840,17 @@
 
 		.region-info {
 			grid-template-columns: 1fr;
+		}
+
+		/* Three chips plus two arrows won't fit a narrow column; stack them. */
+		.comparison {
+			grid-template-columns: 1fr;
+			max-width: none;
+		}
+
+		.comparison i {
+			transform: rotate(90deg);
+			justify-self: start;
 		}
 
 		.info-meta {
@@ -2693,6 +2876,10 @@
 
 		.mode-control {
 			width: 100%;
+			/* Four modes won't fit one phone-width row; go two-by-two. */
+			grid-auto-flow: row;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			grid-auto-columns: auto;
 		}
 
 		.mode-control button {

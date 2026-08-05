@@ -285,11 +285,11 @@
 			</div>
 
 			<header class="hero">
-				<p class="eyebrow">Optometry AI Bench · Infectious keratitis · n = 7 models</p>
-				<p class="byline">By <strong>Justin A. Dang</strong> · Summer Grand Rounds 2026, NSUOCO</p>
 				<h1>Seven models, one cornea, one wrong heuristic.</h1>
+				<p class="eyebrow">Optometry AI Bench</p>
+				<p class="byline">By <strong>Justin A. Dang</strong> · Third-year optometry student, NSUOCO · Summer Grand Rounds 2026</p>
 				<p class="lede">
-					I scored seven LLMs on a single optometry case from a Summer Grand Rounds deck:
+					I scored seven LLMs on a single optometry case from my Summer Grand Rounds deck:
 					a painful corneal infection two months after a tree-branch injury. The ground-truth
 					answer is presumed filamentous fungal keratitis, with same-day corneal referral and
 					natamycin 5% as first-line therapy. Five models got there. Two got stuck on
@@ -315,13 +315,19 @@
 				<p>
 					<strong>The case in one paragraph.</strong> A patient presents with a unilateral
 					painful red eye two months after being struck by a tree branch on a hunting trip.
-					VA is 20/70 OD, 20/25 OS. Slit-lamp shows 2+ diffuse injection and a stromal
+					VA is 20/40 OD with no pinhole improvement, 20/20 OS. Slit-lamp shows 2+ diffuse injection and a stromal
 					infiltrate covering roughly two-thirds of the corneal surface with multiple satellite
 					lesions, fluffy ill-defined borders, and only trace SPK — minimal epithelial
 					disruption relative to the depth of the stromal disease. Anterior chamber reaction
-					is present. The deck's working diagnosis is
+					is present. My working diagnosis was
 					<strong>mycotic corneal ulcer OD (ICD-10 H16.061)</strong>, presumed filamentous —
 					not Acanthamoeba, not bacterial, not HSV.
+				</p>
+				<p class="consent-note">
+					I saw this patient as the duty doctor at the NSU Oklahoma College of Optometry clinic
+					and presented the case at Grand Rounds. It appears here for educational purposes with
+					the patient's signed authorization and verbal consent, with identifying details
+					removed.
 				</p>
 				<p>
 					<strong>Why this is a useful AI benchmark.</strong> The case has a well-known
@@ -344,12 +350,34 @@
 					decided. Safety, shift factors, and clarity break ties between models that are
 					already on the right path.
 				</p>
+				<p>
+					<strong>How it was run.</strong> Seven models, one case, one response each. Every
+					model received an identical structured vignette — history, entrance testing,
+					slit-lamp findings, and the same five questions — with no follow-up prompting. Each
+					was run at its <em>lowest</em> reasoning setting on purpose, to approximate the speed
+					you want when triaging a painful red eye in the chair rather than the ceiling of what
+					the model can do. Several of these would almost certainly score higher with extended
+					reasoning. Scoring was done against the ground truth from my own deck rather than a
+					blinded key — the right answer was known while grading. Scored 31 May 2026 against
+					the versions current that week.
+				</p>
+				<p>
+					<strong>What this isn't.</strong> A single case built to satisfy the AI component of
+					my Grand Rounds requirement is not a general capability ranking. One case cannot tell
+					you which model is better at optometry, and a model that anchors badly here may
+					re-rank correctly on a different presentation. Read the 53-point spread as one
+					specific failure mode caught in the open, not as a leaderboard.
+				</p>
+				<p>
+					<strong>AI assistance.</strong> This report was put together with the assistance of
+					AI, and it has gone through several iterations of human review since. The case, the
+					clinical ground truth, and the final scores are mine.
+				</p>
 			</section>
 
 			<section class="chart-section" aria-labelledby="score-heading">
 				<div class="section-head">
 					<div>
-						<p class="eyebrow">01 · Scoreboard</p>
 						<h2 id="score-heading">Total and per-category ranking</h2>
 						<p class="section-sub">
 							Switch the dimension to see how a category's max changes the ranking. Smaller
@@ -458,7 +486,6 @@
 			<section class="chart-section" aria-labelledby="composition-heading">
 				<div class="section-head">
 					<div>
-						<p class="eyebrow">02 · Score composition</p>
 						<h2 id="composition-heading">Where each model earned and lost points</h2>
 						<p class="section-sub">
 							Normalized view shows each category as a fraction of its own maximum, so a
@@ -594,7 +621,6 @@
 			<section class="chart-section" aria-labelledby="scatter-heading">
 				<div class="section-head">
 					<div>
-						<p class="eyebrow">03 · Two-axis view</p>
 						<h2 id="scatter-heading">Diagnostic reasoning vs. safe triage</h2>
 						<p class="section-sub">
 							X-axis is Dx + Features + Differential (out of 50). Y-axis is Management + Safety
@@ -644,7 +670,6 @@
 			<section class="chart-section" aria-labelledby="heatmap-heading">
 				<div class="section-head">
 					<div>
-						<p class="eyebrow">04 · Failure mode matrix</p>
 						<h2 id="heatmap-heading">Where each model went off</h2>
 						<p class="section-sub">
 							Six discrete failure modes from the grading report. Hover a column header to see
@@ -726,6 +751,11 @@
 			</section>
 
 			<footer>
+				<p class="disclaimer">
+					This is an educational write-up by an optometry student, not medical advice. Nothing
+					here should be used to diagnose or treat a patient, and the drugs and doses discussed
+					are reported as case and trial evidence rather than recommended to any reader.
+				</p>
 				<a href="/">← Back to home</a>
 				<span>© Justin A. Dang · Optometry AI Bench · Summer Grand Rounds 2026, NSUOCO</span>
 			</footer>
@@ -767,6 +797,7 @@
 	.topbar,
 	footer {
 		display: flex;
+		flex-wrap: wrap;
 		align-items: center;
 		justify-content: space-between;
 		gap: 16px;
@@ -805,6 +836,11 @@
 	.byline strong {
 		color: var(--foreground);
 		font-weight: 600;
+	}
+
+	/* Hero metadata now trails the title, so it needs the gap the title's margin: 0 doesn't give. */
+	.hero h1 + .eyebrow {
+		margin-top: 26px;
 	}
 
 	.eyebrow,
@@ -930,6 +966,24 @@
 	.plain-section strong,
 	.model-detail strong {
 		color: var(--foreground);
+	}
+
+	/* Provenance and consent note — subordinate to the case text it qualifies. */
+	.plain-section .consent-note {
+		margin: -6px 0 20px;
+		padding-left: 14px;
+		border-left: 2px solid color-mix(in oklch, var(--foreground), transparent 78%);
+		font-size: 0.9rem;
+		line-height: 1.65;
+		color: color-mix(in oklch, var(--foreground), transparent 38%);
+	}
+
+	.disclaimer {
+		flex-basis: 100%;
+		margin: 0;
+		max-width: 680px;
+		font-size: 0.82rem;
+		line-height: 1.65;
 	}
 
 	.section-head {
