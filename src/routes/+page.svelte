@@ -83,7 +83,7 @@
 	// Unlisted pages — no nav entry anywhere else, so these links are the only way in.
 	const writing = [
 		{
-			label: 'Scheduling 2,133 clinic assignments in 119 seconds',
+			label: 'Building Our Clinic Schedule',
 			href: '/clinic-schedule-solver'
 		},
 		{
