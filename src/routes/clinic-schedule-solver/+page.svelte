@@ -3,7 +3,7 @@
 </script>
 
 <svelte:head>
-	<title>Scheduling 2,133 clinic assignments in 119 seconds — Justin Dang</title>
+	<title>Scheduling 2,133 clinic assignments in 119 seconds — Justin A. Dang</title>
 	<meta
 		name="description"
 		content="The 119-second solve was one part of a longer process: translating clinical knowledge into explicit rules, validating the result, and carrying it through faculty publication."
@@ -21,7 +21,7 @@
 	<meta property="og:image:height" content="630" />
 	<meta
 		property="og:image:alt"
-		content="Scheduling 2,133 clinic assignments in 119 seconds by Justin Dang"
+		content="Scheduling 2,133 clinic assignments in 119 seconds by Justin A. Dang"
 	/>
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:title" content="Scheduling 2,133 clinic assignments in 119 seconds" />
@@ -32,7 +32,7 @@
 	<meta name="twitter:image" content="https://justindang.dev/clinic-schedule-solver-og.jpg" />
 	<meta
 		name="twitter:image:alt"
-		content="Scheduling 2,133 clinic assignments in 119 seconds by Justin Dang"
+		content="Scheduling 2,133 clinic assignments in 119 seconds by Justin A. Dang"
 	/>
 </svelte:head>
 
@@ -56,7 +56,7 @@
 			</p>
 			<p class="text-muted-foreground mt-5 text-sm">
 				By <a href="/" class="hover:text-foreground underline underline-offset-2 transition-colors"
-					>Justin Dang</a
+					>Justin A. Dang</a
 				>
 				· August 17, 2026
 			</p>
