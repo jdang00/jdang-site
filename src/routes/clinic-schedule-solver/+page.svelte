@@ -92,14 +92,14 @@
 		name="description"
 		content="A technical case study of translating an optometry clinic semester into a CP-SAT constraint model, validating it independently, and comparing the candidate with the faculty-published schedule."
 	/>
-	<link rel="canonical" href="https://jdang.site/clinic-schedule-solver" />
+	<link rel="canonical" href="https://justindang.dev/clinic-schedule-solver" />
 	<meta property="og:title" content="Scheduling 2,133 clinic assignments in 119 seconds" />
 	<meta
 		property="og:description"
 		content="How I modeled an optometry clinic semester with set theory, CP-SAT, independent validation, and faculty review."
 	/>
 	<meta property="og:type" content="article" />
-	<meta property="og:url" content="https://jdang.site/clinic-schedule-solver" />
+	<meta property="og:url" content="https://justindang.dev/clinic-schedule-solver" />
 </svelte:head>
 
 {#if mounted}
@@ -107,7 +107,7 @@
 		<div class="grid-paper" aria-hidden="true"></div>
 
 		<header class="site-bar">
-			<a class="back-link" href="/" aria-label="Back to Justin Dang's home page">← jdang.site</a>
+			<a class="back-link" href="/" aria-label="Back to Justin Dang's home page">← justindang.dev</a>
 			<DarkModeToggle />
 		</header>
 
@@ -612,7 +612,7 @@
 							encoded CP-SAT model; faculty approval and the August 6 publication established the
 							official schedule.
 						</p>
-						<a href="/">← Back to jdang.site</a>
+						<a href="/">← Back to justindang.dev</a>
 					</footer>
 				</article>
 			</div>
