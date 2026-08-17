@@ -1,14 +1,14 @@
 <svelte:head>
-	<title>Building Our Clinic Schedule — Justin Dang</title>
+	<title>Scheduling 2,133 clinic assignments in 119 seconds — Justin Dang</title>
 	<meta
 		name="description"
-		content="How I translated an optometry clinic semester into explicit rules, a constraint model, a faculty-reviewed schedule, and usable data in ClinicHub."
+		content="The 119-second solve was one part of a longer process: translating clinical knowledge into explicit rules, validating the result, and carrying it through faculty publication."
 	/>
 	<link rel="canonical" href="https://justindang.dev/clinic-schedule-solver" />
-	<meta property="og:title" content="Building Our Clinic Schedule" />
+	<meta property="og:title" content="Scheduling 2,133 clinic assignments in 119 seconds" />
 	<meta
 		property="og:description"
-		content="A first-person account of the clinical knowledge, mathematics, code, validation, and faculty review behind an optometry clinic schedule."
+		content="How I turned a semester of clinical requirements into a CP-SAT model, checked it against history, and helped carry the result through faculty review and publication."
 	/>
 	<meta property="og:type" content="article" />
 	<meta property="og:url" content="https://justindang.dev/clinic-schedule-solver" />
@@ -24,11 +24,12 @@
 
 		<header class="mb-12">
 			<h1 class="text-4xl leading-tight font-bold tracking-tight text-balance sm:text-[2.9rem]">
-				Building Our Clinic Schedule
+				Scheduling 2,133 clinic assignments in 119 seconds
 			</h1>
 			<p class="mt-5 text-xl leading-relaxed text-zinc-600">
-				How I turned a semester of clinical requirements into a schedule that faculty could review,
-				publish, and deliver to students.
+				The final optimization run took 119.12 seconds. Getting there required translating a
+				semester of clinical knowledge into explicit rules, checking the result against history, and
+				carrying a candidate through faculty review and publication.
 			</p>
 			<p class="mt-5 text-sm text-zinc-500">August 17, 2026</p>
 		</header>
@@ -151,23 +152,29 @@
 				</table>
 			</div>
 
-			<h2 class="mt-5 text-2xl font-bold tracking-tight">Why schedules could arrive late</h2>
+			<h2 class="mt-5 text-2xl font-bold tracking-tight">Why schedules often arrive late</h2>
 
 			<p>
 				Before I worked on the fall schedule, I had already seen what a long manual process felt
-				like from the student side. On May 12, Dr. Fenska sent our class only the first two weeks of
-				the summer clinic schedule and said the rest would be finalized as soon as possible. On May
-				18, the day before clinic orientation, he wrote again that the full third-year schedule was
-				still delayed. The finalized PDF arrived on May 25, and the spreadsheet version followed on
-				May 26.
+				like from the student side. On May 12, our class received only the first two weeks of the
+				summer clinic schedule, with the remainder still being finalized. A May 18 update, sent the
+				day before clinic orientation, said the full third-year schedule was still delayed. The
+				finalized PDF arrived on May 25, and the spreadsheet version followed on May 26.
 			</p>
 
 			<p>
-				Those emails identify the delay but do not name one specific cause. They document the
-				practical result of a workflow that takes time to assemble and review: students can begin a
-				term with only a partial view, and the machine-readable workbook can lag behind the document
-				they are expected to read. That makes it harder to plan appointments, travel, studying, and
-				the rest of life outside clinic.
+				That kind of short runway is understandable in clinical scheduling. The messages did not
+				assign the delay to one cause, but the broader process depends on class calendars, faculty
+				coverage, clinic capacity, off-site rotations, closures, and special events becoming settled
+				enough to use. The schedule still has to be assembled and reviewed after those inputs
+				arrive. It is normal for the final release to come with little time to spare.
+			</p>
+
+			<p>
+				The student-facing result is less abstract. Students may reach orientation with only a
+				partial view, and the machine-readable workbook can lag behind the document they are
+				expected to read. That makes it harder to plan appointments, travel, studying, and the rest
+				of life outside clinic.
 			</p>
 
 			<p>
