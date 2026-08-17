@@ -1,3 +1,7 @@
+<script lang="ts">
+	import DarkModeToggle from '$lib/components/DarkModeToggle.svelte';
+</script>
+
 <svelte:head>
 	<title>Scheduling 2,133 clinic assignments in 119 seconds — Justin Dang</title>
 	<meta
@@ -14,24 +18,30 @@
 	<meta property="og:url" content="https://justindang.dev/clinic-schedule-solver" />
 </svelte:head>
 
-<div class="min-h-screen bg-white text-zinc-900">
+<div class="bg-background text-foreground min-h-screen">
 	<article class="mx-auto flex max-w-[720px] flex-col px-5 py-12 sm:py-16">
-		<div class="mb-12">
-			<a href="/" class="text-sm text-zinc-500 transition-colors hover:text-zinc-900">
+		<div class="mb-12 flex items-center justify-between">
+			<a href="/" class="text-muted-foreground hover:text-foreground text-sm transition-colors">
 				← Justin Dang
 			</a>
+			<DarkModeToggle />
 		</div>
 
 		<header class="mb-12">
 			<h1 class="text-4xl leading-tight font-bold tracking-tight text-balance sm:text-[2.9rem]">
 				Scheduling 2,133 clinic assignments in 119 seconds
 			</h1>
-			<p class="mt-5 text-xl leading-relaxed text-zinc-600">
+			<p class="text-muted-foreground mt-5 text-xl leading-relaxed">
 				The final optimization run took 119.12 seconds. Getting there required translating a
 				semester of clinical knowledge into explicit rules, checking the result against history, and
 				carrying a candidate through faculty review and publication.
 			</p>
-			<p class="mt-5 text-sm text-zinc-500">August 17, 2026</p>
+			<p class="text-muted-foreground mt-5 text-sm">
+				By <a href="/" class="hover:text-foreground underline underline-offset-2 transition-colors"
+					>Justin Dang</a
+				>
+				· August 17, 2026
+			</p>
 		</header>
 
 		<div class="flex flex-col gap-7 text-lg leading-relaxed">
@@ -117,27 +127,26 @@
 				clinic and faculty coverage were available.
 			</p>
 
-			<div class="overflow-x-auto rounded-lg border border-zinc-200">
+			<div class="border-border overflow-x-auto rounded-lg border">
 				<table class="w-full min-w-[560px] border-collapse text-left text-base">
-					<thead class="bg-zinc-50 text-sm text-zinc-600">
+					<thead class="bg-muted/40 text-muted-foreground text-sm">
 						<tr>
-							<th class="border-b border-zinc-200 px-4 py-3 font-medium">A student sees</th>
-							<th class="border-b border-zinc-200 px-4 py-3 font-medium"
-								>The scheduler must manage</th
+							<th class="border-border border-b px-4 py-3 font-medium">A student sees</th>
+							<th class="border-border border-b px-4 py-3 font-medium">The scheduler must manage</th
 							>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td class="border-b border-zinc-200 px-4 py-3">“I have VT Tuesday morning.”</td>
-							<td class="border-b border-zinc-200 px-4 py-3"
+							<td class="border-border border-b px-4 py-3">“I have VT Tuesday morning.”</td>
+							<td class="border-border border-b px-4 py-3"
 								>The whole VT block, its capacity, dates, and every student competing for those
 								seats.</td
 							>
 						</tr>
 						<tr>
-							<td class="border-b border-zinc-200 px-4 py-3">“I am in REP on Friday.”</td>
-							<td class="border-b border-zinc-200 px-4 py-3"
+							<td class="border-border border-b px-4 py-3">“I am in REP on Friday.”</td>
+							<td class="border-border border-b px-4 py-3"
 								>The correct cohort, the linked morning and afternoon, and the repeating Friday
 								rotation.</td
 							>
@@ -229,7 +238,7 @@
 			</p>
 
 			<div
-				class="rounded-lg border border-zinc-200 bg-zinc-50 px-5 py-4 font-mono text-base leading-loose text-zinc-800"
+				class="border-border bg-muted/40 text-foreground rounded-lg border px-5 py-4 font-mono text-base leading-loose"
 			>
 				<div><span class="font-semibold">S</span> = the 27 students</div>
 				<div><span class="font-semibold">T</span> = the 79 open half-day periods</div>
@@ -245,7 +254,7 @@
 			</p>
 
 			<div
-				class="overflow-x-auto rounded-lg border border-zinc-200 bg-zinc-50 px-5 py-5 text-center font-mono text-xl text-zinc-900"
+				class="border-border bg-muted/40 text-foreground overflow-x-auto rounded-lg border px-5 py-5 text-center font-mono text-xl"
 			>
 				x<sub>s,t,c</sub> ∈ &#123;0, 1&#125;
 			</div>
@@ -272,7 +281,7 @@
 			</p>
 
 			<div
-				class="overflow-x-auto rounded-lg border border-zinc-200 bg-zinc-50 px-5 py-5 text-center font-mono text-xl text-zinc-900"
+				class="border-border bg-muted/40 text-foreground overflow-x-auto rounded-lg border px-5 py-5 text-center font-mono text-xl"
 			>
 				∑<sub>c∈C</sub> x<sub>s,t,c</sub> = 1
 			</div>
@@ -292,7 +301,7 @@
 			</p>
 
 			<div
-				class="overflow-x-auto rounded-lg border border-zinc-200 bg-zinc-50 px-5 py-5 text-center font-mono text-xl text-zinc-900"
+				class="border-border bg-muted/40 text-foreground overflow-x-auto rounded-lg border px-5 py-5 text-center font-mono text-xl"
 			>
 				∑<sub>s∈S</sub> x<sub>s,t,c</sub> = r<sub>t,c</sub>
 			</div>
@@ -319,7 +328,7 @@
 			</p>
 
 			<div
-				class="rounded-lg border border-zinc-200 bg-zinc-50 px-5 py-5 text-center font-mono text-lg text-zinc-900"
+				class="border-border bg-muted/40 text-foreground rounded-lg border px-5 py-5 text-center font-mono text-lg"
 			>
 				13(7) + 14(6) = 175
 			</div>
@@ -340,7 +349,7 @@
 			</p>
 
 			<pre
-				class="overflow-x-auto rounded-lg border border-zinc-200 bg-zinc-50 p-5 text-sm leading-relaxed text-zinc-800"><code
+				class="border-border bg-muted/40 text-foreground overflow-x-auto rounded-lg border p-5 text-sm leading-relaxed"><code
 					>source documents and faculty guidance
     ↓
 versioned calendar, capacity, and rule configuration
@@ -366,7 +375,7 @@ Excel review → faculty publication → ClinicHub</code
 				naturally carries the complete story of a solver run. I wanted one portable artifact that
 				could preserve the schedule, the rules that produced it, the validation report, and the
 				numbers needed for later comparison. I created the
-				<code class="rounded bg-zinc-100 px-1.5 py-0.5 text-base">.nsuococlinic</code>
+				<code class="bg-muted rounded px-1.5 py-0.5 text-base">.nsuococlinic</code>
 				format for that purpose.
 			</p>
 
@@ -398,7 +407,7 @@ Excel review → faculty publication → ClinicHub</code
 				A file can be internally valid while it is still a candidate. The artifact records its
 				technical state; faculty publication records institutional approval. The current final
 				ClinicHub import still begins with the approved PDF. A direct, signed handoff from a
-				published <code class="rounded bg-zinc-100 px-1.5 py-0.5 text-base">.nsuococlinic</code>
+				published <code class="bg-muted rounded px-1.5 py-0.5 text-base">.nsuococlinic</code>
 				artifact is one of the next workflow improvements.
 			</p>
 
@@ -410,41 +419,41 @@ Excel review → faculty publication → ClinicHub</code
 				objective describes which valid schedule I would prefer.
 			</p>
 
-			<div class="overflow-x-auto rounded-lg border border-zinc-200">
+			<div class="border-border overflow-x-auto rounded-lg border">
 				<table class="w-full min-w-[600px] border-collapse text-left text-base">
-					<thead class="bg-zinc-50 text-sm text-zinc-600">
+					<thead class="bg-muted/40 text-muted-foreground text-sm">
 						<tr>
-							<th class="border-b border-zinc-200 px-4 py-3 font-medium">Type</th>
-							<th class="border-b border-zinc-200 px-4 py-3 font-medium">Example</th>
-							<th class="border-b border-zinc-200 px-4 py-3 font-medium">Why it matters</th>
+							<th class="border-border border-b px-4 py-3 font-medium">Type</th>
+							<th class="border-border border-b px-4 py-3 font-medium">Example</th>
+							<th class="border-border border-b px-4 py-3 font-medium">Why it matters</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td class="border-b border-zinc-200 px-4 py-3 font-medium">Hard</td>
-							<td class="border-b border-zinc-200 px-4 py-3"
+							<td class="border-border border-b px-4 py-3 font-medium">Hard</td>
+							<td class="border-border border-b px-4 py-3"
 								>Exactly one assignment in every open period</td
 							>
-							<td class="border-b border-zinc-200 px-4 py-3">Prevents blanks and double-booking</td>
+							<td class="border-border border-b px-4 py-3">Prevents blanks and double-booking</td>
 						</tr>
 						<tr>
-							<td class="border-b border-zinc-200 px-4 py-3 font-medium">Hard</td>
-							<td class="border-b border-zinc-200 px-4 py-3"
+							<td class="border-border border-b px-4 py-3 font-medium">Hard</td>
+							<td class="border-border border-b px-4 py-3"
 								>Meet protected clinic capacity by date</td
 							>
-							<td class="border-b border-zinc-200 px-4 py-3"
+							<td class="border-border border-b px-4 py-3"
 								>Uses the available faculty and clinic seats</td
 							>
 						</tr>
 						<tr>
-							<td class="border-b border-zinc-200 px-4 py-3 font-medium">Hard</td>
-							<td class="border-b border-zinc-200 px-4 py-3">Link REP morning and afternoon</td>
-							<td class="border-b border-zinc-200 px-4 py-3">Preserves a full-day rotation</td>
+							<td class="border-border border-b px-4 py-3 font-medium">Hard</td>
+							<td class="border-border border-b px-4 py-3">Link REP morning and afternoon</td>
+							<td class="border-border border-b px-4 py-3">Preserves a full-day rotation</td>
 						</tr>
 						<tr>
-							<td class="border-b border-zinc-200 px-4 py-3 font-medium">Soft</td>
-							<td class="border-b border-zinc-200 px-4 py-3">Reduce the widest exposure gap</td>
-							<td class="border-b border-zinc-200 px-4 py-3">Distributes experience more evenly</td>
+							<td class="border-border border-b px-4 py-3 font-medium">Soft</td>
+							<td class="border-border border-b px-4 py-3">Reduce the widest exposure gap</td>
+							<td class="border-border border-b px-4 py-3">Distributes experience more evenly</td>
 						</tr>
 						<tr>
 							<td class="px-4 py-3 font-medium">Soft</td>
@@ -482,7 +491,7 @@ Excel review → faculty publication → ClinicHub</code
 			</p>
 
 			<div
-				class="overflow-x-auto rounded-lg border border-zinc-200 bg-zinc-50 px-5 py-5 text-center font-mono text-lg text-zinc-900"
+				class="border-border bg-muted/40 text-foreground overflow-x-auto rounded-lg border px-5 py-5 text-center font-mono text-lg"
 			>
 				R<sub>c</sub> = max<sub>s</sub> n<sub>s,c</sub> − min<sub>s</sub> n<sub>s,c</sub>
 			</div>
@@ -519,64 +528,64 @@ Excel review → faculty publication → ClinicHub</code
 				capacity?
 			</p>
 
-			<div class="overflow-x-auto rounded-lg border border-zinc-200">
+			<div class="border-border overflow-x-auto rounded-lg border">
 				<table class="w-full min-w-[620px] border-collapse text-left text-base">
-					<thead class="bg-zinc-50 text-sm text-zinc-600">
+					<thead class="bg-muted/40 text-muted-foreground text-sm">
 						<tr>
-							<th class="border-b border-zinc-200 px-4 py-3 font-medium">Experience</th>
-							<th class="border-b border-zinc-200 px-4 py-3 font-medium">2025 average</th>
-							<th class="border-b border-zinc-200 px-4 py-3 font-medium">2026 published average</th>
-							<th class="border-b border-zinc-200 px-4 py-3 font-medium"
+							<th class="border-border border-b px-4 py-3 font-medium">Experience</th>
+							<th class="border-border border-b px-4 py-3 font-medium">2025 average</th>
+							<th class="border-border border-b px-4 py-3 font-medium">2026 published average</th>
+							<th class="border-border border-b px-4 py-3 font-medium"
 								>What the comparison showed</th
 							>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td class="border-b border-zinc-200 px-4 py-3 font-medium">CL</td>
-							<td class="border-b border-zinc-200 px-4 py-3">8.70</td>
-							<td class="border-b border-zinc-200 px-4 py-3">6.48</td>
-							<td class="border-b border-zinc-200 px-4 py-3"
+							<td class="border-border border-b px-4 py-3 font-medium">CL</td>
+							<td class="border-border border-b px-4 py-3">8.70</td>
+							<td class="border-border border-b px-4 py-3">6.48</td>
+							<td class="border-border border-b px-4 py-3"
 								>A deliberate decrease from the new block rule and current 175-seat calendar.</td
 							>
 						</tr>
 						<tr>
-							<td class="border-b border-zinc-200 px-4 py-3 font-medium">VT</td>
-							<td class="border-b border-zinc-200 px-4 py-3">4.00</td>
-							<td class="border-b border-zinc-200 px-4 py-3">4.30</td>
-							<td class="border-b border-zinc-200 px-4 py-3"
+							<td class="border-border border-b px-4 py-3 font-medium">VT</td>
+							<td class="border-border border-b px-4 py-3">4.00</td>
+							<td class="border-border border-b px-4 py-3">4.30</td>
+							<td class="border-border border-b px-4 py-3"
 								>An increase caused by 116 approved current seats, all filled.</td
 							>
 						</tr>
 						<tr>
-							<td class="border-b border-zinc-200 px-4 py-3 font-medium">WI + WIS</td>
-							<td class="border-b border-zinc-200 px-4 py-3">5.96</td>
-							<td class="border-b border-zinc-200 px-4 py-3">5.89</td>
-							<td class="border-b border-zinc-200 px-4 py-3"
+							<td class="border-border border-b px-4 py-3 font-medium">WI + WIS</td>
+							<td class="border-border border-b px-4 py-3">5.96</td>
+							<td class="border-border border-b px-4 py-3">5.89</td>
+							<td class="border-border border-b px-4 py-3"
 								>Nearly the same mean, with a tighter student distribution.</td
 							>
 						</tr>
 						<tr>
-							<td class="border-b border-zinc-200 px-4 py-3 font-medium">DS + DSN + SF + OC</td>
-							<td class="border-b border-zinc-200 px-4 py-3">8.52</td>
-							<td class="border-b border-zinc-200 px-4 py-3">8.48</td>
-							<td class="border-b border-zinc-200 px-4 py-3"
+							<td class="border-border border-b px-4 py-3 font-medium">DS + DSN + SF + OC</td>
+							<td class="border-border border-b px-4 py-3">8.52</td>
+							<td class="border-border border-b px-4 py-3">8.48</td>
+							<td class="border-border border-b px-4 py-3"
 								>The combined duty load stayed almost identical while its mix changed.</td
 							>
 						</tr>
 						<tr>
-							<td class="border-b border-zinc-200 px-4 py-3 font-medium">RPA</td>
-							<td class="border-b border-zinc-200 px-4 py-3">0.63</td>
-							<td class="border-b border-zinc-200 px-4 py-3">0.78</td>
-							<td class="border-b border-zinc-200 px-4 py-3"
+							<td class="border-border border-b px-4 py-3 font-medium">RPA</td>
+							<td class="border-border border-b px-4 py-3">0.63</td>
+							<td class="border-border border-b px-4 py-3">0.78</td>
+							<td class="border-border border-b px-4 py-3"
 								>More current RPA opportunities were used.</td
 							>
 						</tr>
 						<tr>
-							<td class="border-b border-zinc-200 px-4 py-3 font-medium">BP</td>
-							<td class="border-b border-zinc-200 px-4 py-3">8.22</td>
-							<td class="border-b border-zinc-200 px-4 py-3">10.00</td>
-							<td class="border-b border-zinc-200 px-4 py-3"
+							<td class="border-border border-b px-4 py-3 font-medium">BP</td>
+							<td class="border-border border-b px-4 py-3">8.22</td>
+							<td class="border-border border-b px-4 py-3">10.00</td>
+							<td class="border-border border-b px-4 py-3"
 								>More residual periods remained after the current clinical schedule and duties.</td
 							>
 						</tr>
@@ -632,42 +641,41 @@ Excel review → faculty publication → ClinicHub</code
 				the Excel workbook.
 			</p>
 
-			<div class="overflow-x-auto rounded-lg border border-zinc-200">
+			<div class="border-border overflow-x-auto rounded-lg border">
 				<table class="w-full min-w-[600px] border-collapse text-left text-base">
-					<thead class="bg-zinc-50 text-sm text-zinc-600">
+					<thead class="bg-muted/40 text-muted-foreground text-sm">
 						<tr>
-							<th class="border-b border-zinc-200 px-4 py-3 font-medium">Question</th>
-							<th class="border-b border-zinc-200 px-4 py-3 font-medium">Arithmetic check</th>
-							<th class="border-b border-zinc-200 px-4 py-3 font-medium">Result</th>
+							<th class="border-border border-b px-4 py-3 font-medium">Question</th>
+							<th class="border-border border-b px-4 py-3 font-medium">Arithmetic check</th>
+							<th class="border-border border-b px-4 py-3 font-medium">Result</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr
-							><td class="border-b border-zinc-200 px-4 py-3"
-								>Is every open student-period filled?</td
-							><td class="border-b border-zinc-200 px-4 py-3">27 students × 79 periods</td><td
-								class="border-b border-zinc-200 px-4 py-3">2,133 assignments</td
+							><td class="border-border border-b px-4 py-3">Is every open student-period filled?</td
+							><td class="border-border border-b px-4 py-3">27 students × 79 periods</td><td
+								class="border-border border-b px-4 py-3">2,133 assignments</td
 							></tr
 						>
 						<tr
-							><td class="border-b border-zinc-200 px-4 py-3">Do all code totals reconcile?</td><td
-								class="border-b border-zinc-200 px-4 py-3">Sum the 19 published code totals</td
-							><td class="border-b border-zinc-200 px-4 py-3">2,133</td></tr
+							><td class="border-border border-b px-4 py-3">Do all code totals reconcile?</td><td
+								class="border-border border-b px-4 py-3">Sum the 19 published code totals</td
+							><td class="border-border border-b px-4 py-3">2,133</td></tr
 						>
 						<tr
-							><td class="border-b border-zinc-200 px-4 py-3">Was protected capacity used?</td><td
-								class="border-b border-zinc-200 px-4 py-3">Assigned seats ÷ required seats</td
-							><td class="border-b border-zinc-200 px-4 py-3">1,599 ÷ 1,599</td></tr
+							><td class="border-border border-b px-4 py-3">Was protected capacity used?</td><td
+								class="border-border border-b px-4 py-3">Assigned seats ÷ required seats</td
+							><td class="border-border border-b px-4 py-3">1,599 ÷ 1,599</td></tr
 						>
 						<tr
-							><td class="border-b border-zinc-200 px-4 py-3">Does CL divide correctly?</td><td
-								class="border-b border-zinc-200 px-4 py-3">13(7) + 14(6)</td
-							><td class="border-b border-zinc-200 px-4 py-3">175</td></tr
+							><td class="border-border border-b px-4 py-3">Does CL divide correctly?</td><td
+								class="border-border border-b px-4 py-3">13(7) + 14(6)</td
+							><td class="border-border border-b px-4 py-3">175</td></tr
 						>
 						<tr
-							><td class="border-b border-zinc-200 px-4 py-3">Does VT divide correctly?</td><td
-								class="border-b border-zinc-200 px-4 py-3">8(5) + 19(4)</td
-							><td class="border-b border-zinc-200 px-4 py-3">116</td></tr
+							><td class="border-border border-b px-4 py-3">Does VT divide correctly?</td><td
+								class="border-border border-b px-4 py-3">8(5) + 19(4)</td
+							><td class="border-border border-b px-4 py-3">116</td></tr
 						>
 						<tr
 							><td class="px-4 py-3">Does REP match the calendar?</td><td class="px-4 py-3"
@@ -687,7 +695,7 @@ Excel review → faculty publication → ClinicHub</code
 			</p>
 
 			<blockquote
-				class="my-2 border-l-4 border-zinc-300 pl-5 text-xl leading-relaxed text-zinc-700"
+				class="border-border text-muted-foreground my-2 border-l-4 pl-5 text-xl leading-relaxed"
 			>
 				The solver can be perfectly consistent with its inputs while the inputs still need a human
 				correction.
@@ -705,9 +713,9 @@ Excel review → faculty publication → ClinicHub</code
 				That correction reinforced the need for several layers of control: original-source review,
 				preflight arithmetic, explicit closures, independent validation, a familiar Excel review,
 				and faculty approval. An
-				<code class="rounded bg-zinc-100 px-1.5 py-0.5 text-base">OPTIMAL</code> status describes the
-				mathematical model that was actually encoded. Faculty review and publication establish the official
-				institutional schedule.
+				<code class="bg-muted rounded px-1.5 py-0.5 text-base">OPTIMAL</code> status describes the mathematical
+				model that was actually encoded. Faculty review and publication establish the official institutional
+				schedule.
 			</p>
 
 			<h2 class="mt-5 text-2xl font-bold tracking-tight">From candidate to published schedule</h2>
@@ -725,36 +733,36 @@ Excel review → faculty publication → ClinicHub</code
 				assignments changed. Every morning cell and every Friday cell matched.
 			</p>
 
-			<div class="overflow-x-auto rounded-lg border border-zinc-200">
+			<div class="border-border overflow-x-auto rounded-lg border">
 				<table class="w-full min-w-[480px] border-collapse text-left text-base">
-					<thead class="bg-zinc-50 text-sm text-zinc-600">
+					<thead class="bg-muted/40 text-muted-foreground text-sm">
 						<tr>
-							<th class="border-b border-zinc-200 px-4 py-3 font-medium">Code</th>
-							<th class="border-b border-zinc-200 px-4 py-3 font-medium">Candidate</th>
-							<th class="border-b border-zinc-200 px-4 py-3 font-medium">Published</th>
-							<th class="border-b border-zinc-200 px-4 py-3 font-medium">Change</th>
+							<th class="border-border border-b px-4 py-3 font-medium">Code</th>
+							<th class="border-border border-b px-4 py-3 font-medium">Candidate</th>
+							<th class="border-border border-b px-4 py-3 font-medium">Published</th>
+							<th class="border-border border-b px-4 py-3 font-medium">Change</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr
-							><td class="border-b border-zinc-200 px-4 py-3">WI</td><td
-								class="border-b border-zinc-200 px-4 py-3">100</td
-							><td class="border-b border-zinc-200 px-4 py-3">106</td><td
-								class="border-b border-zinc-200 px-4 py-3">+6</td
+							><td class="border-border border-b px-4 py-3">WI</td><td
+								class="border-border border-b px-4 py-3">100</td
+							><td class="border-border border-b px-4 py-3">106</td><td
+								class="border-border border-b px-4 py-3">+6</td
 							></tr
 						>
 						<tr
-							><td class="border-b border-zinc-200 px-4 py-3">DSN</td><td
-								class="border-b border-zinc-200 px-4 py-3">55</td
-							><td class="border-b border-zinc-200 px-4 py-3">53</td><td
-								class="border-b border-zinc-200 px-4 py-3">−2</td
+							><td class="border-border border-b px-4 py-3">DSN</td><td
+								class="border-border border-b px-4 py-3">55</td
+							><td class="border-border border-b px-4 py-3">53</td><td
+								class="border-border border-b px-4 py-3">−2</td
 							></tr
 						>
 						<tr
-							><td class="border-b border-zinc-200 px-4 py-3">SF</td><td
-								class="border-b border-zinc-200 px-4 py-3">55</td
-							><td class="border-b border-zinc-200 px-4 py-3">53</td><td
-								class="border-b border-zinc-200 px-4 py-3">−2</td
+							><td class="border-border border-b px-4 py-3">SF</td><td
+								class="border-border border-b px-4 py-3">55</td
+							><td class="border-border border-b px-4 py-3">53</td><td
+								class="border-border border-b px-4 py-3">−2</td
 							></tr
 						>
 						<tr
@@ -841,7 +849,9 @@ Excel review → faculty publication → ClinicHub</code
 				move faster while remaining understandable.
 			</p>
 
-			<footer class="mt-8 border-t border-zinc-200 pt-6 text-sm leading-relaxed text-zinc-500">
+			<footer
+				class="border-border text-muted-foreground mt-8 border-t pt-6 text-sm leading-relaxed"
+			>
 				<p>
 					This article reports aggregate Fall 2026 third-year scheduling data. Student identities
 					and private correspondence are omitted.
