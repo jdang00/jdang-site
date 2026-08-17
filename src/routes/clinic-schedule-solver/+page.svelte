@@ -16,6 +16,24 @@
 	/>
 	<meta property="og:type" content="article" />
 	<meta property="og:url" content="https://justindang.dev/clinic-schedule-solver" />
+	<meta property="og:image" content="https://justindang.dev/clinic-schedule-solver-og.jpg" />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="630" />
+	<meta
+		property="og:image:alt"
+		content="Scheduling 2,133 clinic assignments in 119 seconds by Justin Dang"
+	/>
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content="Scheduling 2,133 clinic assignments in 119 seconds" />
+	<meta
+		name="twitter:description"
+		content="How I turned a semester of clinical requirements into a CP-SAT model and carried it through faculty publication."
+	/>
+	<meta name="twitter:image" content="https://justindang.dev/clinic-schedule-solver-og.jpg" />
+	<meta
+		name="twitter:image:alt"
+		content="Scheduling 2,133 clinic assignments in 119 seconds by Justin Dang"
+	/>
 </svelte:head>
 
 <div class="bg-background text-foreground min-h-screen">
