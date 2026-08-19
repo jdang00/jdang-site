@@ -52,7 +52,9 @@
 		"@fontsource/geist-mono": "^5.2.7",
 		"@fontsource/geist-sans": "^5.2.5",
 		"@tailwindcss/typography": "^0.5.15",
+		"@types/katex": "^0.16.8",
 		"jspdf": "^3.0.1",
+		"katex": "^0.18.4",
 		"lucide-svelte": "^0.539.0"
 	}
 }
